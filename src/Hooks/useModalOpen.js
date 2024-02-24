@@ -5,9 +5,7 @@ const useModalOpen = () => {
   const [clickValue, setClickValue] = useState("");
 
   const handleModalOpen = (e) => {
-    e.preventDefault();
     setIsOpen(true);
-    setClickValue(e.target.textContent);
   };
 
   return {
@@ -15,6 +13,7 @@ const useModalOpen = () => {
     isOpen,
     setIsOpen,
     clickValue,
+    setClickValue,
   };
 };
 

@@ -4,9 +4,13 @@ import deleteIcon from "../Assets/image/delete.png";
 import "../Styles/FolderTools.css";
 import ModalEdit from "./Modal/ModalEdit";
 import useModalOpen from "../Hooks/useModalOpen";
+import ModalDeleteFolder from "./Modal/ModalDeleteFolder";
+import { useFolder } from "../Hooks/useFolder";
 
-function FolderTools() {
-  const { handleModalOpen, isOpen, setIsOpen } = useModalOpen();
+function FolderTools({ id }) {
+  const { handleModalOpen, isOpen, setIsOpen, clickValue, setClickValue } =
+    useModalOpen();
+  const { currentMenu } = useFolder();
   return (
     <>
       <div className="tools">
@@ -14,15 +18,36 @@ function FolderTools() {
           <img src={shareIcon} alt="공유 아이콘" />
         </div>
         <div className="icon">
-          <img src={penIcon} alt="이름변경 아이콘" onClick={handleModalOpen} />
+          <img
+            src={penIcon}
+            alt="이름변경 아이콘"
+            onClick={() => {
+              setClickValue("이름 변경");
+              handleModalOpen();
+            }}
+          />
         </div>
-        {isOpen && (
-          <ModalEdit isOpen={isOpen} onClose={() => setIsOpen(false)} />
-        )}
         <div className="icon">
-          <img src={deleteIcon} alt="삭제 아이콘" />
+          <img
+            src={deleteIcon}
+            alt="삭제 아이콘"
+            onClick={() => {
+              setClickValue("삭제");
+              handleModalOpen();
+            }}
+          />
         </div>
       </div>
+      {isOpen && clickValue === "이름 변경" ? (
+        <ModalEdit isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      ) : isOpen && clickValue === "삭제" ? (
+        <ModalDeleteFolder
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          currentMenu={currentMenu}
+        />
+      ) : // 여기서 currentMenu 부분이 자꾸 전체로 뜨는데 어디에서 잘못된 걸까요..? ㅠㅠ
+      null}
     </>
   );
 }

@@ -8,15 +8,16 @@ import FolderTools from "./FolderTools";
 import "../Styles/FolderMain.css";
 
 export function FolderMain() {
-  const [menu, setMenu] = useState("전체");
+  const [currentMenu, setCurrentMenu] = useState("전체");
+  const [folderCurrentId, setFolderCurrentId] = useState("");
+  const { link, fetchLinks } = useLinks();
+  const folderNames = useFolderName();
 
   const handleMenuChange = (newMenu, id) => {
-    setMenu(newMenu);
+    setCurrentMenu(newMenu);
     fetchLinks(id);
+    setFolderCurrentId(id);
   };
-
-  const folderNames = useFolderName();
-  const { link, fetchLinks } = useLinks();
 
   return (
     <>
@@ -33,8 +34,8 @@ export function FolderMain() {
       <FolderMenu folderNames={folderNames} onMenuChange={handleMenuChange} />
 
       <div className="titleContainer">
-        <div className="title">{menu}</div>
-        {menu !== "전체" && <FolderTools />}
+        <div className="title">{currentMenu}</div>
+        {currentMenu !== "전체" && <FolderTools id={folderCurrentId} />}
       </div>
 
       {link && link.length ? (
