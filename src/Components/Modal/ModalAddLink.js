@@ -16,7 +16,7 @@ const ModalAddLink = ({ isOpen, onClose, url }) => {
             </div>
           ))}
       </div>
-      <button className="modelBtn">추가하기</button>
+      <button className="modelAddBtn">추가하기</button>
     </>
   );
 

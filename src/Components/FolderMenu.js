@@ -1,11 +1,15 @@
 import { Button } from "./Button";
 import "../Styles/FolderMenu.css";
+import useModalOpen from "../Hooks/useModalOpen";
+import ModalAddFolder from "./Modal/ModalAddFolder";
 
 export function FolderMenu({ folderNames, onMenuChange }) {
   const sendMenu = (e, id) => {
     const newMenu = e.target.textContent;
     onMenuChange(newMenu, id);
   };
+
+  const { handleModalOpen, isOpen, setIsOpen } = useModalOpen();
 
   return (
     <>
@@ -23,7 +27,12 @@ export function FolderMenu({ folderNames, onMenuChange }) {
             ))}
         </div>
 
-        <div className="addFolder">폴더 추가 +</div>
+        <div className="addFolder" onClick={handleModalOpen}>
+          폴더 추가 +
+        </div>
+        {isOpen && (
+          <ModalAddFolder isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        )}
       </div>
     </>
   );
