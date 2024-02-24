@@ -31,21 +31,17 @@ body {
 .searchInput {
   width: 100%;
   border-radius: 10px;
-  padding: 15px 16px;
+  padding: 15px 16px 15px 42px;
   border: none;
   background-color: #f5f5f5;
 }
 
-.searchIcon {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-}
-
 .searchImg {
+  position: absolute;
+  bottom: 15px;
+  left: 10px;
   width: 16px;
   height: 16px;
-  margin-right: 10px;
 }
 
 .cardContainer {

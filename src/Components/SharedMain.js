@@ -12,9 +12,7 @@ export function SharedMain({ cards }) {
             className="searchInput"
             placeholder="링크를 검색해 보세요."
           ></input>
-          <div className="searchIcon">
-            <img src={searchIcon} className="searchImg" alt="검색 아이콘"></img>
-          </div>
+          <img src={searchIcon} className="searchImg" alt="검색 아이콘"></img>
         </div>
       </div>
 

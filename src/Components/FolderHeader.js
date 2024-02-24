@@ -1,7 +1,10 @@
 import linkIcon from "../Assets/image/link.png";
 import "../Styles/FolderHeader.css";
+import ModalAddLink from "../Components/Modal/ModalAddLink";
+import useModalOpen from "../Hooks/useModalOpen";
 
 export function FolderHeader() {
+  const { handleModalOpen, isOpen, setIsOpen } = useModalOpen();
   return (
     <>
       <form>
@@ -11,10 +14,13 @@ export function FolderHeader() {
               className="linkInput"
               placeholder="링크를 추가해 보세요"
             ></input>
-            <div className="linkIcon">
-              <img src={linkIcon} className="linkImg" alt="링크 아이콘"></img>
-            </div>
-            <button className="linkAddBtn">추가하기</button>
+            <img src={linkIcon} className="linkImg" alt="링크 아이콘"></img>
+            <button className="linkAddBtn" onClick={handleModalOpen}>
+              추가하기
+            </button>
+            {isOpen && (
+              <ModalAddLink isOpen={isOpen} onClose={() => setIsOpen(false)} />
+            )}
           </div>
         </div>
       </form>

@@ -1,12 +1,13 @@
 import React from "react";
 import favoriteIcon from "../Assets/image/star.png";
 import kebabIcon from "../Assets/image/kebab.png";
+import defaultImg from "../Assets/image/defaultImg.svg";
 import "../Styles/FolderCard.css";
 
-export function FolderCard({ cardInfo, key }) {
-  const { imageSource, createdAt, description, url } = cardInfo;
+export function FolderCard({ cardInfo }) {
+  const { image_source, created_at, description, url } = cardInfo;
 
-  const inputDate = new Date(createdAt);
+  const inputDate = new Date(created_at);
 
   const year = inputDate.getFullYear();
   const month = (inputDate.getMonth() + 1).toString().padStart(2, "0");
@@ -54,17 +55,16 @@ export function FolderCard({ cardInfo, key }) {
     return `${Math.floor(years)} years ago`;
   };
 
+  const src = image_source ? image_source : defaultImg;
+  const alt = image_source ? "카드이미지" : "기본이미지";
+
   return (
     <>
       <main>
         <a href={url} target="_blank">
           <div className="folderCard">
             <div className="cardImgContainer">
-              <img
-                src={imageSource}
-                className="cardImg"
-                alt="카드 이미지"
-              ></img>
+              <img src={src} className="cardImg" alt={alt}></img>
               <div>
                 <img
                   src={favoriteIcon}
@@ -75,7 +75,7 @@ export function FolderCard({ cardInfo, key }) {
               </div>
             </div>
             <div className="cardContents">
-              <p className="createdFrom">{getCreatedFrom(createdAt)}</p>
+              <p className="createdFrom">{getCreatedFrom(created_at)}</p>
               <p className="description">{description}</p>
               <p className="createdAt">{createdAtDate}</p>
             </div>

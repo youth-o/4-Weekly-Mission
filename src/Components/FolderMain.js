@@ -3,7 +3,7 @@ import searchIcon from "../Assets/image/Search.png";
 import { FolderCard } from "./FolderCard";
 import { FolderMenu } from "./FolderMenu";
 import { useFolderName } from "../Hooks/useFolderName";
-import { useFolder } from "../Hooks/useFolder";
+import { useLinks } from "../Hooks/useLinks";
 import FolderTools from "./FolderTools";
 import "../Styles/FolderMain.css";
 
@@ -12,11 +12,11 @@ export function FolderMain() {
 
   const handleMenuChange = (newMenu, id) => {
     setMenu(newMenu);
-    fetchFolder(id);
+    fetchLinks(id);
   };
 
   const folderNames = useFolderName();
-  const { folder, fetchFolder } = useFolder();
+  const { link, fetchLinks } = useLinks();
 
   return (
     <>
@@ -26,9 +26,7 @@ export function FolderMain() {
             className="searchInput"
             placeholder="링크를 검색해 보세요."
           ></input>
-          <div className="searchIcon">
-            <img src={searchIcon} className="searchImg" alt="검색 아이콘"></img>
-          </div>
+          <img src={searchIcon} className="searchImg" alt="검색 아이콘"></img>
         </div>
       </div>
 
@@ -39,9 +37,9 @@ export function FolderMain() {
         {menu !== "전체" && <FolderTools />}
       </div>
 
-      {folder && folder.length ? (
+      {link && link.length ? (
         <div className="cardContainer">
-          {folder.map((card) => (
+          {link.map((card) => (
             <FolderCard key={card.id} cardInfo={card}></FolderCard>
           ))}
         </div>
