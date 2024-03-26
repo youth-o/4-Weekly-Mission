@@ -5,6 +5,7 @@ import kebab from "../Assets/image/kebab.svg";
 import { Link } from "../Hooks/useLinks";
 import { Kebab } from "./Kebab";
 import defaultImage from "../Assets/image/defaultImg.svg";
+import "../Styles/FolderCard.css";
 
 interface FolderCardProps {
   cardInfo: Link;
