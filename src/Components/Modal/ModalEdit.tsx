@@ -4,13 +4,14 @@ import ModalContainer from "./ModalContainer";
 interface ModalEditProps {
   isOpen: boolean;
   onClose: () => void;
+  selectedFolderName: string;
 }
 
-const ModalEdit = ({ isOpen, onClose }: ModalEditProps) => {
+const ModalEdit = ({ isOpen, onClose, selectedFolderName }: ModalEditProps) => {
   const editFolder = (
     <>
       <h2 className="modalTitle">폴더 이름 변경</h2>
-      <input className="modalInput" placeholder="내용 입력"></input>
+      <input className="modalInput" placeholder={selectedFolderName}></input>
       <button className="modelAddBtn">변경하기</button>
     </>
   );

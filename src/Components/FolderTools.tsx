@@ -9,13 +9,14 @@ import pen from "../Assets/image/pen.svg";
 import deleteImg from "../Assets/image/delete.svg";
 
 interface FolderToolsProps {
-  id: string;
+  id: number;
 }
 
 function FolderTools({ id }: FolderToolsProps) {
   const { handleModalOpen, isOpen, setIsOpen, clickValue, setClickValue } =
     useModalOpen();
   const { currentMenu } = useFolder();
+
   return (
     <>
       <div className="tools">

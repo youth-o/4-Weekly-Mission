@@ -3,6 +3,7 @@ import "../Styles/FolderCard.css";
 import star from "../Assets/image/star.svg";
 import kebab from "../Assets/image/kebab.svg";
 import { Link } from "../Hooks/useLinks";
+import { Kebab } from "./Kebab";
 
 interface FolderCardProps {
   cardInfo: Link;

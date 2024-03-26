@@ -10,7 +10,7 @@ type Folder = {
 
 export const useFolder = () => {
   const [folder, setFolder] = useState<Folder[]>([]);
-  const [currentMenu, setCurrentMenu] = useState<string>("전체");
+  const [currentMenu, setCurrentMenu] = useState("전체");
 
   const fetchFolder = async () => {
     try {

@@ -6,7 +6,7 @@ import ModalDeleteLink from "./Modal/ModalDeleteLink";
 interface Props {
   url: string;
 }
-export function CardKebab({ url }: Props) {
+export function Kebab({ url }: Props) {
   const { handleModalOpen, isOpen, setIsOpen, clickValue } = useModalOpen();
 
   return (

@@ -3,30 +3,31 @@ import { Button } from "./Button";
 import "../Styles/FolderMenu.css";
 import useModalOpen from "../Hooks/useModalOpen";
 import ModalAddFolder from "./Modal/ModalAddFolder";
-
-interface Folder {
-  name: string;
-  id: string;
-}
+import { useFolderName } from "../Hooks/useFolderName";
 
 interface FolderMenuProps {
-  folderNames: Folder[];
-  onMenuChange: (newMenu: string | null, id: string) => void;
+  onMenuChange: (newMenu: string, id?: number) => void;
 }
 
-export function FolderMenu({ folderNames, onMenuChange }: FolderMenuProps) {
-  const sendMenu = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
-    const newMenu = (e.target as HTMLButtonElement).textContent;
+export function FolderMenu({ onMenuChange }: FolderMenuProps) {
+  const { folderNames } = useFolderName();
+  const { handleModalOpen, isOpen, setIsOpen } = useModalOpen();
+
+  const sendMenu = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id?: number
+  ) => {
+    const target = e.target as HTMLButtonElement;
+    const newMenu = target.textContent;
+    if (!newMenu) return;
     onMenuChange(newMenu, id);
   };
-
-  const { handleModalOpen, isOpen, setIsOpen } = useModalOpen();
 
   return (
     <>
       <div className="folderMenu">
         <div>
-          <Button folderName={"전체"} id="all" onClick={sendMenu}></Button>
+          <Button folderName={"전체"} onClick={(e) => sendMenu(e)}></Button>
           {folderNames &&
             folderNames.length &&
             folderNames.map(({ name, id }) => (
@@ -34,7 +35,6 @@ export function FolderMenu({ folderNames, onMenuChange }: FolderMenuProps) {
                 folderName={name}
                 key={id}
                 onClick={(e) => sendMenu(e, id)}
-                id={id}
               ></Button>
             ))}
         </div>
