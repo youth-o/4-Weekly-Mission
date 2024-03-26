@@ -20,32 +20,22 @@ function FolderTools({ id }: FolderToolsProps) {
   return (
     <>
       <div className="tools">
-        <div className="icon">
+        <button className="icon" onClick={handleModalOpen}>
           <img src={share} alt="공유 아이콘" />
-        </div>
-        <div className="icon">
-          <img
-            src={pen}
-            alt="이름변경 아이콘"
-            onClick={() => {
-              setClickValue("이름 변경");
-              handleModalOpen();
-            }}
-          />
-        </div>
-        <div className="icon">
-          <img
-            src={deleteImg}
-            alt="삭제 아이콘"
-            onClick={() => {
-              setClickValue("삭제");
-              handleModalOpen();
-            }}
-          />
-        </div>
+        </button>
+        <button className="icon" onClick={handleModalOpen}>
+          <img src={pen} alt="이름변경 아이콘" />
+        </button>
+        <button className="icon" onClick={handleModalOpen}>
+          <img src={deleteImg} alt="삭제 아이콘" />
+        </button>
       </div>
       {isOpen && clickValue === "이름 변경" ? (
-        <ModalEdit isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <ModalEdit
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          selectedFolderName={"유용한 팁"}
+        />
       ) : isOpen && clickValue === "삭제" ? (
         <ModalDeleteFolder
           isOpen={isOpen}

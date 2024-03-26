@@ -20,11 +20,7 @@ export function FolderHeader() {
               추가하기
             </button>
             {isOpen && (
-              <ModalAddLink
-                isOpen={isOpen}
-                onClose={() => setIsOpen(false)}
-                url={""}
-              />
+              <ModalAddLink isOpen={isOpen} onClose={() => setIsOpen(false)} />
             )}
           </div>
         </div>

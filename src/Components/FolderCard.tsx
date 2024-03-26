@@ -4,6 +4,7 @@ import star from "../Assets/image/star.svg";
 import kebab from "../Assets/image/kebab.svg";
 import { Link } from "../Hooks/useLinks";
 import { Kebab } from "./Kebab";
+import defaultImage from "../Assets/image/defaultImg.svg";
 
 interface FolderCardProps {
   cardInfo: Link;
@@ -69,7 +70,7 @@ export function FolderCard({ cardInfo }: FolderCardProps) {
     return `${Math.floor(years)} years ago`;
   };
 
-  const src = image_source ? image_source : "/src/Assets/image/defaultImg.svg";
+  const src = image_source ? image_source : defaultImage;
   const alt = image_source ? "카드이미지" : "기본이미지";
 
   return (
@@ -81,7 +82,7 @@ export function FolderCard({ cardInfo }: FolderCardProps) {
               <img src={src} className="cardImg" alt={alt}></img>
               <div>
                 <img src={star} className="favoriteImg" alt="즐겨찾기"></img>
-                <button>
+                <button onClick={handleClickKebab}>
                   <img src={kebab} className="kebabImg" alt="더보기"></img>
                 </button>
                 {kebabToggle && <Kebab url={url} />}
