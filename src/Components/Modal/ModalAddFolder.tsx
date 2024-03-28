@@ -4,9 +4,14 @@ import "../../Styles/Modal.css";
 interface ModalAddFolderProps {
   isOpen: boolean;
   onClose: () => void;
+  selectedFolderName?: string;
 }
 
-const ModalAddFolder = ({ isOpen, onClose }: ModalAddFolderProps) => {
+const ModalAddFolder = ({
+  isOpen,
+  onClose,
+  selectedFolderName,
+}: ModalAddFolderProps) => {
   const addFolder = (
     <>
       <h2 className="modalTitle">폴더 추가</h2>

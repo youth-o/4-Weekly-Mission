@@ -3,14 +3,14 @@ import { Button } from "./Button";
 import "../Styles/FolderMenu.css";
 import useModalOpen from "../Hooks/useModalOpen";
 import ModalAddFolder from "./Modal/ModalAddFolder";
-import { useFolderName } from "../Hooks/useFolderName";
+import { useFolderNames } from "../Hooks/useFolderName";
 
 interface FolderMenuProps {
   onMenuChange: (newMenu: string, id?: number) => void;
 }
 
 export function FolderMenu({ onMenuChange }: FolderMenuProps) {
-  const { folderNames } = useFolderName();
+  const { folderNames } = useFolderNames();
   const { handleModalOpen, isOpen, setIsOpen } = useModalOpen();
 
   const sendMenu = (
@@ -43,7 +43,11 @@ export function FolderMenu({ onMenuChange }: FolderMenuProps) {
           폴더 추가 +
         </div>
         {isOpen && (
-          <ModalAddFolder isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          <ModalAddFolder
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+            selectedFolderName={"내용 입력"}
+          />
         )}
       </div>
     </>
