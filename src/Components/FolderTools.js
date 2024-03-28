@@ -1,6 +1,6 @@
-import shareIcon from "../Assets/image/share.png";
-import penIcon from "../Assets/image/pen.png";
-import deleteIcon from "../Assets/image/delete.png";
+import shareIcon from "../Assets/image/share.svg";
+import penIcon from "../Assets/image/pen.svg";
+import deleteIcon from "../Assets/image/delete.svg";
 import "../Styles/FolderTools.css";
 import ModalEdit from "./Modal/ModalEdit";
 import useModalOpen from "../Hooks/useModalOpen";

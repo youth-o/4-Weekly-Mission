@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../Assets/image/logo.png";
+import logo from "../Assets/image/logo.svg";
 
 export function Nav({ profile }) {
   return (

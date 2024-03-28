@@ -1,8 +1,8 @@
 import React from "react";
-import facebookImg from "../Assets/image/facebook.png";
-import twitterImg from "../Assets/image/twitter.png";
-import youtubeImg from "../Assets/image/youtube.png";
-import instaImg from "../Assets/image/instagram.png";
+import facebookImg from "../Assets/image/facebook.svg";
+import twitterImg from "../Assets/image/twitter.svg";
+import youtubeImg from "../Assets/image/youtube.svg";
+import instaImg from "../Assets/image/instagram.svg";
 import "../Styles/Footer.css";
 
 export function Footer() {

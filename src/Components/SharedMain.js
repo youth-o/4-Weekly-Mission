@@ -1,5 +1,5 @@
 import React from "react";
-import searchIcon from "../Assets/image/Search.png";
+import searchIcon from "../Assets/image/Search.svg";
 import { SharedCard } from "./SharedCard";
 import "../Styles/Main.css";
 

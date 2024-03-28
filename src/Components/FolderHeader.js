@@ -1,4 +1,4 @@
-import linkIcon from "../Assets/image/link.png";
+import linkIcon from "../Assets/image/link.svg";
 import "../Styles/FolderHeader.css";
 import ModalAddLink from "../Components/Modal/ModalAddLink";
 import useModalOpen from "../Hooks/useModalOpen";
