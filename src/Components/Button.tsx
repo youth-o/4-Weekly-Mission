@@ -3,13 +3,12 @@ import "../Styles/Button.css";
 
 interface ButtonProps {
   folderName: string;
-  id: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>, id: string) => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export function Button({ folderName, onClick, id }: ButtonProps) {
+export function Button({ folderName, onClick }: ButtonProps) {
   return (
-    <button className="folderButton" onClick={(e) => onClick(e, id)}>
+    <button className="folderButton" onClick={onClick}>
       {folderName}
     </button>
   );

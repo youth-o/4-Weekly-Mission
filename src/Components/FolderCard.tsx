@@ -1,25 +1,54 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../Styles/FolderCard.css";
-import { LinkData } from "../API/FolderPageApi";
 import star from "../Assets/image/star.svg";
+import kebab from "../Assets/image/kebab.svg";
+import { Link } from "../Hooks/useLinks";
+import { Kebab } from "./Kebab";
+import defaultImage from "../Assets/image/defaultImg.svg";
+import "../Styles/FolderCard.css";
 
 interface FolderCardProps {
-  cardInfo: LinkData;
+  cardInfo: Link;
 }
 
 export function FolderCard({ cardInfo }: FolderCardProps) {
-  const { imageSource, createdAt, description, url } = cardInfo;
+  const { image_source, created_at, description, url } = cardInfo;
+  const [kebabToggle, setKebabToggle] = useState(false);
+  const ref = useRef<HTMLButtonElement>(null);
 
-  const inputDate = new Date(createdAt);
+  const handleOutsideClick = (e: MouseEvent) => {
+    if (
+      kebabToggle &&
+      (!ref.current || !ref.current.contains(e.target as Node))
+    ) {
+      setKebabToggle(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", handleOutsideClick);
+    return () => {
+      window.removeEventListener("click", handleOutsideClick);
+    };
+  }, [kebabToggle]);
+
+  const handleClickKebab = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    setKebabToggle(!kebabToggle);
+  };
+
+  const inputDate = new Date(created_at);
 
   const year = inputDate.getFullYear();
   const month = (inputDate.getMonth() + 1).toString().padStart(2, "0");
   const day = inputDate.getDate().toString().padStart(2, "0");
   const createdAtDate = `${year}. ${month}. ${day}`;
 
-  const getCreatedFrom = (createdAt: string): string => {
+  const getCreatedFrom = () => {
     const now = new Date();
-    const timeDifference = now.getTime() - new Date(createdAt).getTime();
+    const timeDifference = now.getTime() - inputDate.getTime();
 
     const minutes = Math.floor(timeDifference / (1000 * 60));
     const hours = Math.floor(timeDifference / (1000 * 60 * 60));
@@ -58,8 +87,8 @@ export function FolderCard({ cardInfo }: FolderCardProps) {
     return `${Math.floor(years)} years ago`;
   };
 
-  const src = imageSource ? imageSource : "/src/Assets/image/defaultImg.svg";
-  const alt = imageSource ? "카드이미지" : "기본이미지";
+  const src = image_source ? image_source : defaultImage;
+  const alt = image_source ? "카드이미지" : "기본이미지";
 
   return (
     <>
@@ -70,15 +99,18 @@ export function FolderCard({ cardInfo }: FolderCardProps) {
               <img src={src} className="cardImg" alt={alt}></img>
               <div>
                 <img src={star} className="favoriteImg" alt="즐겨찾기"></img>
-                <img
-                  src="/src/Assets/image/kebab.png"
-                  className="kebabImg"
-                  alt="더보기"
-                ></img>
+                <button
+                  className="kebabBtn"
+                  ref={ref}
+                  onClick={handleClickKebab}
+                >
+                  <img src={kebab} className="kebabImg" alt="더보기"></img>
+                </button>
+                {kebabToggle && <Kebab url={url} />}
               </div>
             </div>
             <div className="cardContents">
-              <p className="createdFrom">{getCreatedFrom(createdAt)}</p>
+              <p className="createdFrom">{getCreatedFrom()}</p>
               <p className="description">{description}</p>
               <p className="createdAt">{createdAtDate}</p>
             </div>
