@@ -1,18 +1,33 @@
 import { useEffect, useState } from "react";
-import { getLinkData } from "../API/FolderPageApi";
+import { getFolderById } from "../API/FolderPageApi";
 
 export const useLinks = () => {
-  const [link, setLink] = useState([]);
+  const [links, setLinks] = useState([]);
 
-  const fetchLinks = async (id) => {
-    const links = await getLinkData(id);
-    setLink(links.data);
-    console.log(`links: ${links}`);
+  const fetchAllLinks = async () => {
+    const { data } = await getFolderById();
+    setLinks(data);
+  };
+
+  const fetchLinkById = async (id) => {
+    const { data } = await getFolderById(id);
+    setLinks(data);
+  };
+
+  const handleLinks = (id) => {
+    if (id) {
+      fetchLinkById(id);
+    } else {
+      fetchAllLinks();
+    }
   };
 
   useEffect(() => {
-    fetchLinks();
+    fetchAllLinks();
   }, []);
 
-  return { link, fetchLinks };
+  return {
+    handleLinks,
+    links,
+  };
 };

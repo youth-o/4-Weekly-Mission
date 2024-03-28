@@ -1,12 +1,12 @@
 import ModalContainer from "./ModalContainer";
 import { useFolder } from "../../Hooks/useFolder";
 
-const ModalAddLink = ({ isOpen, onClose, url }) => {
+const ModalAddLinkToFolder = ({ isOpen, onClose, selectedFolderName }) => {
   const { folder } = useFolder();
 
-  const addLink = (
+  const addFolderContent = (
     <>
-      <h2 className="modalTitle">폴더에 추가</h2>
+      <h2 className="title">폴더에 추가</h2>
       <div className="menuLists">
         {folder &&
           folder.map((eachFolder) => (
@@ -16,13 +16,16 @@ const ModalAddLink = ({ isOpen, onClose, url }) => {
             </div>
           ))}
       </div>
-      <button className="modelAddBtn">추가하기</button>
+      <button className="blueButton">추가하기</button>
     </>
   );
 
   return (
-    <ModalContainer isOpen={isOpen} onClose={onClose} children={addLink} />
+    <ModalContainer
+      isOpen={isOpen}
+      onClose={onClose}
+      children={addFolderContent}
+    />
   );
 };
-
-export default ModalAddLink;
+export default ModalAddLinkToFolder;

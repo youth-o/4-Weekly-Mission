@@ -6,13 +6,16 @@ export const useFolder = () => {
   const [currentMenu, setCurrentMenu] = useState("전체");
 
   const fetchFolder = async () => {
-    const { data } = await getFolderName();
-    setFolder(data);
+    try {
+      const data = await getFolderName();
+      setFolder(data);
+    } catch (error) {
+      console.error("Error fetching folder:", error);
+    }
   };
 
   useEffect(() => {
     fetchFolder();
   }, []);
-
   return { currentMenu, setCurrentMenu, folder };
 };

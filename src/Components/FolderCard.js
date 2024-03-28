@@ -1,11 +1,18 @@
-import React from "react";
+import { useState } from "react";
 import favoriteIcon from "../Assets/image/star.png";
 import kebabIcon from "../Assets/image/kebab.png";
 import defaultImg from "../Assets/image/defaultImg.svg";
+import { Kebab } from "./Kebab";
 import "../Styles/FolderCard.css";
 
 export function FolderCard({ cardInfo }) {
   const { image_source, created_at, description, url } = cardInfo;
+  const [kebabToggle, setKebabToggle] = useState(false);
+
+  const handleClickKebab = (e) => {
+    e.preventDefault();
+    setKebabToggle(kebabToggle ? false : true);
+  };
 
   const inputDate = new Date(created_at);
 
@@ -71,7 +78,13 @@ export function FolderCard({ cardInfo }) {
                   className="favoriteImg"
                   alt="즐겨찾기"
                 ></img>
-                <img src={kebabIcon} className="kebabImg" alt="더보기"></img>
+                <img
+                  src={kebabIcon}
+                  className="kebabImg"
+                  alt="더보기"
+                  onClick={handleClickKebab}
+                ></img>
+                {kebabToggle && <Kebab url={url} />}
               </div>
             </div>
             <div className="cardContents">

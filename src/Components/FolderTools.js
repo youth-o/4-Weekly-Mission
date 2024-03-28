@@ -39,7 +39,11 @@ function FolderTools({ id }) {
         </div>
       </div>
       {isOpen && clickValue === "이름 변경" ? (
-        <ModalEdit isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <ModalEdit
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          selectedFolderName={"유용한 팁"}
+        />
       ) : isOpen && clickValue === "삭제" ? (
         <ModalDeleteFolder
           isOpen={isOpen}
