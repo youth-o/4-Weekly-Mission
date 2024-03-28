@@ -5,12 +5,11 @@ import "../Styles/FolderTools.css";
 import ModalEdit from "./Modal/ModalEdit";
 import useModalOpen from "../Hooks/useModalOpen";
 import ModalDeleteFolder from "./Modal/ModalDeleteFolder";
-import { useFolder } from "../Hooks/useFolder";
 
-function FolderTools({ id }) {
+function FolderTools({ id, currentMenu }) {
   const { handleModalOpen, isOpen, setIsOpen, clickValue, setClickValue } =
     useModalOpen();
-  const { currentMenu } = useFolder();
+
   return (
     <>
       <div className="tools">
@@ -42,7 +41,7 @@ function FolderTools({ id }) {
         <ModalEdit
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
-          selectedFolderName={"유용한 팁"}
+          selectedFolderName={currentMenu}
         />
       ) : isOpen && clickValue === "삭제" ? (
         <ModalDeleteFolder
@@ -50,8 +49,7 @@ function FolderTools({ id }) {
           onClose={() => setIsOpen(false)}
           currentMenu={currentMenu}
         />
-      ) : // 여기서 currentMenu 부분이 자꾸 전체로 뜨는데 어디에서 잘못된 걸까요..? ㅠㅠ
-      null}
+      ) : null}
     </>
   );
 }

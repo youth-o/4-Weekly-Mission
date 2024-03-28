@@ -14,7 +14,7 @@ export function FolderMain() {
   const [searchValue, setSearchValue] = useState("");
 
   const handleMenuChange = (newMenu, id) => {
-    setCurrentMenu(newMenu ?? "전체");
+    setCurrentMenu(newMenu);
     handleLinks(id);
     setFolderCurrentId(id);
   };
@@ -61,7 +61,7 @@ export function FolderMain() {
       <div className="titleContainer">
         <div className="title">{currentMenu}</div>
         {currentMenu !== "전체" && folderCurrentId && (
-          <FolderTools id={folderCurrentId} />
+          <FolderTools id={folderCurrentId} currentMenu={currentMenu} />
         )}
       </div>
 
