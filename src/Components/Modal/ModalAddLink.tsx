@@ -1,13 +1,18 @@
 import ModalContainer from "./ModalContainer";
 import { useFolder } from "../../Hooks/useFolder";
+import "../../Styles/Modal.css";
 
-interface Props {
+interface ModalAddLinkProps {
   isOpen: boolean;
   onClose: () => void;
   selectedFolderName?: string;
 }
 
-const ModalAddLink = ({ isOpen, onClose, selectedFolderName }: Props) => {
+const ModalAddLink = ({
+  isOpen,
+  onClose,
+  selectedFolderName,
+}: ModalAddLinkProps) => {
   const { folder } = useFolder();
 
   const addFolderContent = (

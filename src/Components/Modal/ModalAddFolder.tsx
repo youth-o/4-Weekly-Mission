@@ -1,5 +1,5 @@
 import ModalContainer from "./ModalContainer";
-import React from "react";
+import "../../Styles/Modal.css";
 
 interface ModalAddFolderProps {
   isOpen: boolean;
@@ -11,7 +11,7 @@ const ModalAddFolder = ({ isOpen, onClose }: ModalAddFolderProps) => {
     <>
       <h2 className="modalTitle">폴더 추가</h2>
       <input className="modalInput" placeholder="내용 입력" />
-      <button className="modelAddBtn">추가하기</button>
+      <button className="modelAddBtn blueBtn">추가하기</button>
     </>
   );
 

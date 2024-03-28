@@ -1,0 +1,109 @@
+.modalBox {
+  display: flex;
+  top: 50%;
+  justify-content: center;
+}
+
+.modalContainer {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 32px 40px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  width: 360px;
+  border-radius: 15px;
+  border: 1px solid #9fa6b2;
+}
+
+.modalBox h2 {
+  color: #373740;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.closeImg {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+
+.modalInput {
+  padding: 18px 15px;
+  width: 100%;
+  height: 2rem;
+  flex: 1;
+  border-radius: 10px;
+  border: 1px solid #ccd5e3;
+}
+
+.modalInput:focus {
+  border-color: var(--primary);
+}
+
+.modalBox button {
+  display: flex;
+  width: 100%;
+  padding: 16px 20px;
+  justify-content: center;
+  border: none;
+  color: #f5f5f5;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.blueBtn {
+  background: linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%);
+}
+
+.redButton {
+  background-color: #ff5b56;
+}
+
+.socialButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.snsButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.4rem;
+}
+
+.socialButtonContainer img {
+  width: 42px;
+  cursor: pointer;
+}
+
+.menuLists {
+  width: 100%;
+  height: 170px;
+  overflow: auto;
+}
+
+.menuList {
+  padding: 1rem;
+  font-size: 1.7rem;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  gap: 1rem;
+}
+
+.menuList:hover {
+  background-color: #f0f6ff;
+}
+
+.menuList p {
+  font-size: 1.4rem;
+  margin-top: 4px;
+}

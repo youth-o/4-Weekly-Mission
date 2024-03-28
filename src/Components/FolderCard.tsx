@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../Styles/FolderCard.css";
 import star from "../Assets/image/star.svg";
 import kebab from "../Assets/image/kebab.svg";
@@ -13,14 +13,30 @@ interface FolderCardProps {
 
 export function FolderCard({ cardInfo }: FolderCardProps) {
   const { image_source, created_at, description, url } = cardInfo;
-
   const [kebabToggle, setKebabToggle] = useState(false);
+  const ref = useRef<HTMLButtonElement>(null);
+
+  const handleOutsideClick = (e: MouseEvent) => {
+    if (
+      kebabToggle &&
+      (!ref.current || !ref.current.contains(e.target as Node))
+    ) {
+      setKebabToggle(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", handleOutsideClick);
+    return () => {
+      window.removeEventListener("click", handleOutsideClick);
+    };
+  }, [kebabToggle]);
 
   const handleClickKebab = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    setKebabToggle(kebabToggle ? false : true);
+    setKebabToggle(!kebabToggle);
   };
 
   const inputDate = new Date(created_at);
@@ -83,7 +99,11 @@ export function FolderCard({ cardInfo }: FolderCardProps) {
               <img src={src} className="cardImg" alt={alt}></img>
               <div>
                 <img src={star} className="favoriteImg" alt="즐겨찾기"></img>
-                <button onClick={handleClickKebab}>
+                <button
+                  className="kebabBtn"
+                  ref={ref}
+                  onClick={handleClickKebab}
+                >
                   <img src={kebab} className="kebabImg" alt="더보기"></img>
                 </button>
                 {kebabToggle && <Kebab url={url} />}

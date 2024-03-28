@@ -1,6 +1,7 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import Modal from "react-modal";
 import close from "../../Assets/image/close.svg";
+import "../../Styles/Modal.css";
 
 interface ModalContainerProps {
   isOpen: boolean;
@@ -10,7 +11,7 @@ interface ModalContainerProps {
 
 const ModalContainer = ({ isOpen, onClose, children }: ModalContainerProps) => {
   return (
-    <Modal isOpen={isOpen} onRequestClose={onClose}>
+    <Modal className="modalBox" isOpen={isOpen} onRequestClose={onClose}>
       <div className="modalContainer">
         <img
           src={close}

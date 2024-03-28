@@ -6,8 +6,10 @@ import "../Styles/Kebab.css";
 interface Props {
   url: string;
 }
+
 export function Kebab({ url }: Props) {
   const { handleModalOpen, isOpen, setIsOpen, clickValue } = useModalOpen();
+  console.log(clickValue);
 
   return (
     <div className="kebabContainer">

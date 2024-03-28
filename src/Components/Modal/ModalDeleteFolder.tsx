@@ -1,5 +1,5 @@
-import React from "react";
 import ModalContainer from "./ModalContainer";
+import "../../Styles/Modal.css";
 
 interface ModalDeleteFolder {
   isOpen: boolean;
