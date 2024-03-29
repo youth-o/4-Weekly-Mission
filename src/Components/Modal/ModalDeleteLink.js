@@ -1,4 +1,5 @@
 import ModalContainer from "./ModalContainer";
+import "../../Styles/Modal.css";
 
 const ModalDeleteLink = ({ isOpen, onClose, url }) => {
   const deleteLinkContent = (
