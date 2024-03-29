@@ -3,7 +3,7 @@ import facebookImg from "../Assets/image/facebook.svg";
 import twitterImg from "../Assets/image/twitter.svg";
 import youtubeImg from "../Assets/image/youtube.svg";
 import instaImg from "../Assets/image/instagram.svg";
-import "../Styles/Footer.css";
+import "@/styles/Footer.module.css";
 
 export function Footer() {
   return (

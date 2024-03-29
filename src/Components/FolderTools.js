@@ -1,10 +1,10 @@
 import shareIcon from "../Assets/image/share.svg";
 import penIcon from "../Assets/image/pen.svg";
 import deleteIcon from "../Assets/image/delete.svg";
-import "../Styles/FolderTools.css";
-import ModalEdit from "./Modal/ModalEdit";
+import "@/styles/FolderTools.module.css";
+import ModalEdit from "@/components/Modal/ModalEdit";
 import useModalOpen from "../Hooks/useModalOpen";
-import ModalDeleteFolder from "./Modal/ModalDeleteFolder";
+import ModalDeleteFolder from "@/components/Modal/ModalDeleteFolder";
 
 function FolderTools({ id, currentMenu }) {
   const { handleModalOpen, isOpen, setIsOpen, clickValue, setClickValue } =

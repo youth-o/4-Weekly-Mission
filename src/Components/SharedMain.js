@@ -1,7 +1,7 @@
 import React from "react";
 import searchIcon from "../Assets/image/Search.svg";
-import { SharedCard } from "./SharedCard";
-import "../Styles/Main.css";
+import { SharedCard } from "@/components/SharedCard";
+import "@/styles/Main.module.css";
 
 export function SharedMain({ cards }) {
   return (

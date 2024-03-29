@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import closeIcon from "../../Assets/image/close.png";
-import "../../Styles/Modal.css";
+import "@/styles/Modal.module.css";
 
 const ModalContainer = ({ isOpen, onClose, children }) => {
   const customStyles = {

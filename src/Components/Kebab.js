@@ -1,7 +1,7 @@
-import "../Styles/Kebab.css";
+import "@/styles/Kebab.module.css";
 import useModalOpen from "../Hooks/useModalOpen";
-import ModalAddLink from "./Modal/ModalAddLink";
-import ModalDeleteLink from "./Modal/ModalDeleteLink";
+import ModalAddLink from "@/components/Modal/ModalAddLink";
+import ModalDeleteLink from "@/components/Modal/ModalDeleteLink";
 
 export function Kebab({ url }) {
   const { handleModalOpen, isOpen, setIsOpen, clickValue } = useModalOpen();

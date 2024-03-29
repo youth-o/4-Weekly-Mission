@@ -2,8 +2,8 @@ import { useState } from "react";
 import favoriteIcon from "../Assets/image/star.svg";
 import kebabIcon from "../Assets/image/kebab.svg";
 import defaultImg from "../Assets/image/defaultImg.svg";
-import { Kebab } from "./Kebab";
-import "../Styles/FolderCard.css";
+import { Kebab } from "@/components/Kebab";
+import "@/styles/FolderCard.module.css";
 
 export function FolderCard({ cardInfo }) {
   const { image_source, created_at, description, url } = cardInfo;

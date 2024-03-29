@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/Card.css";
+import "@/styles/Card.module.css";
 
 export function SharedCard({ cardInfo, key }) {
   const { imageSource, createdAt, description, url } = cardInfo;

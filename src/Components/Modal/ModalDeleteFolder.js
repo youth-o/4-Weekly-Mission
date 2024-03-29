@@ -1,5 +1,5 @@
-import ModalContainer from "./ModalContainer";
-import "../../Styles/Modal.css";
+import ModalContainer from "@/components/Modal/ModalContainer";
+import "@/styles/Modal.module.css";
 
 const ModalDeleteFolder = ({ isOpen, onClose, currentMenu }) => {
   const deleteFolder = (

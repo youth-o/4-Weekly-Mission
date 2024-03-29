@@ -1,4 +1,4 @@
-import "../Styles/Button.css";
+import "@/styles/Button.module.css";
 
 export function Button({ folderName, onClick }) {
   return (

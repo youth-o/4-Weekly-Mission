@@ -1,13 +1,13 @@
 import linkIcon from "../Assets/image/link.svg";
-import "../Styles/FolderHeader.css";
-import ModalAddLink from "../Components/Modal/ModalAddLink";
+import "@/styles/FolderHeader.module.css";
+import ModalAddLink from "@/components/Modal/ModalAddLink";
 import useModalOpen from "../Hooks/useModalOpen";
 
 export function FolderHeader() {
   const { handleModalOpen, isOpen, setIsOpen } = useModalOpen();
   return (
     <>
-      <form>
+      <form className="form">
         <div className="linkInputContainer">
           <div className="link">
             <input

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { FolderCard } from "./FolderCard";
-import { FolderMenu } from "./FolderMenu";
+import { FolderCard } from "@/components/FolderCard";
+import { FolderMenu } from "@/components/FolderMenu";
 import { useLinks } from "../Hooks/useLinks";
-import FolderTools from "./FolderTools";
+import FolderTools from "@/components/FolderTools";
 import search from "../Assets/image/Search.svg";
-import "../Styles/FolderMain.css";
+import "@/styles/FolderMain.module.css";
 import { useFolder } from "../Hooks/useFolder";
 
 export function FolderMain() {
