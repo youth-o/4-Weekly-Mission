@@ -1,21 +1,21 @@
 import React from "react";
-import "@/styles/SharedHeader.module.css";
+import styles from "@/styles/SharedHeader.module.css";
 
 export function SharedHeader({ folder }) {
   return (
     <>
       <header>
-        <div className="folder">
-          <div className="folderProfile">
+        <div className={styles.folder}>
+          <div className={styles.folderProfile}>
             <img
               src={folder.userProfileImage}
-              className="folderImg"
+              className={styles.folderImg}
               alt="userProfileImg"
             ></img>
-            <p className="folderProfileName">{folder.userName}</p>
+            <p className={styles.folderProfileName}>{folder.userName}</p>
           </div>
           <div>
-            <h2 className="folderName">{folder.folderName}</h2>
+            <h2 className={styles.folderName}>{folder.folderName}</h2>
           </div>
         </div>
       </header>

@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button";
-import "@/styles/FolderMenu.module.css";
+import styles from "@/styles/FolderMenu.module.css";
 import useModalOpen from "../Hooks/useModalOpen";
 import ModalAddFolder from "@/components/Modal/ModalAddFolder";
 import { useFolderName } from "../Hooks/useFolderName";
@@ -17,7 +17,7 @@ export function FolderMenu({ onMenuChange }) {
 
   return (
     <>
-      <div className="folderMenu">
+      <div className={styles.folderMenu}>
         <div>
           <Button folderName={"전체"} onClick={(e) => sendMenu(e)}></Button>
           {folderNames &&
@@ -30,7 +30,7 @@ export function FolderMenu({ onMenuChange }) {
               ></Button>
             ))}
         </div>
-        <div className="addFolder" onClick={handleModalOpen}>
+        <div className={styles.addFolder} onClick={handleModalOpen}>
           폴더 추가 +
         </div>
         {isOpen && (

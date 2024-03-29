@@ -1,7 +1,7 @@
 import React from "react";
-import "@/styles/Card.module.css";
+import styles from "@/styles/Card.module.css";
 
-export function SharedCard({ cardInfo, key }) {
+export function SharedCard({ cardInfo }) {
   const { imageSource, createdAt, description, url } = cardInfo;
 
   const inputDate = new Date(createdAt);
@@ -55,18 +55,18 @@ export function SharedCard({ cardInfo, key }) {
     <>
       <main>
         <a href={url} target="_blank">
-          <div className="card">
-            <div className="cardImgContainer">
+          <div className={styles.sharedCard}>
+            <div className={styles.cardImgContainer}>
               <img
                 src={imageSource}
-                className="cardImg"
+                className={styles.cardImg}
                 alt="카드 이미지"
               ></img>
             </div>
-            <div className="cardContents">
-              <p className="createdFrom">{getCreatedFrom(createdAt)}</p>
-              <p className="description">{description}</p>
-              <p className="createdAt">{createdAtDate}</p>
+            <div className={styles.cardContents}>
+              <p className={styles.createdFrom}>{getCreatedFrom(createdAt)}</p>
+              <p className={styles.description}>{description}</p>
+              <p className={styles.createdAt}>{createdAtDate}</p>
             </div>
           </div>
         </a>

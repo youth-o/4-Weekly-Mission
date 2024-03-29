@@ -4,7 +4,7 @@ import { FolderMenu } from "@/components/FolderMenu";
 import { useLinks } from "../Hooks/useLinks";
 import FolderTools from "@/components/FolderTools";
 import search from "../Assets/image/Search.svg";
-import "@/styles/FolderMain.module.css";
+import styles from "@/styles/FolderMain.module.css";
 import { useFolder } from "../Hooks/useFolder";
 
 export function FolderMain() {
@@ -39,17 +39,17 @@ export function FolderMain() {
 
   return (
     <>
-      <div className="searchContainer">
-        <div className="search">
+      <div className={styles.searchContainer}>
+        <div className={styles.search}>
           <input
-            className="searchInput"
+            className={styles.searchInput}
             placeholder="링크를 검색해 보세요."
             value={searchValue}
             onChange={handleSearchData}
           ></input>
           <img
             src={search}
-            className="searchImg"
+            className={styles.searchImg}
             alt="검색 아이콘"
             onClick={handleInputValue}
           ></img>
@@ -58,21 +58,21 @@ export function FolderMain() {
 
       <FolderMenu onMenuChange={handleMenuChange} />
 
-      <div className="titleContainer">
-        <div className="title">{currentMenu}</div>
+      <div className={styles.titleContainer}>
+        <div className={styles.title}>{currentMenu}</div>
         {currentMenu !== "전체" && folderCurrentId && (
           <FolderTools id={folderCurrentId} currentMenu={currentMenu} />
         )}
       </div>
 
       {linkArray && linkArray.length ? (
-        <div className="cardContainer">
+        <div className={styles.cardContainer}>
           {linkArray.map((card) => (
             <FolderCard key={card.id} cardInfo={card}></FolderCard>
           ))}
         </div>
       ) : (
-        <div className="noLink">저장된 링크가 없습니다.</div>
+        <div className={styles.noLink}>저장된 링크가 없습니다.</div>
       )}
     </>
   );

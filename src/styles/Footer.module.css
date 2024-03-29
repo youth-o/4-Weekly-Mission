@@ -1,8 +1,3 @@
-footer {
-  margin-top: 60px;
-  width: 100%;
-}
-
 .footer {
   background-color: #111322;
   width: 100%;
@@ -12,7 +7,11 @@ footer {
   padding: 32px 104px 64px 104px;
 }
 
-.footer-copyright {
+.footer a {
+  color: #676767;
+}
+
+.footerCopyright {
   font-family: Acme;
   font-size: 16px;
   font-weight: 400;
@@ -21,7 +20,7 @@ footer {
   text-align: center;
 }
 
-.footer-contents {
+.footerContents {
   font-family: Acme;
   text-decoration: none;
   font-size: 16px;
@@ -31,12 +30,12 @@ footer {
   color: #cfcfcf;
 }
 
-.footer-website {
+.footerWebsite {
   display: flex;
   gap: 24px;
 }
 
-.footer-image {
+.footerImage {
   width: 20px;
   height: 20px;
 }

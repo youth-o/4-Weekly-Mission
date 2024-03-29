@@ -1,12 +1,12 @@
 import ModalContainer from "@/components/Modal/ModalContainer";
-import "@/styles/Modal.module.css";
+import styles from "@/styles/Modal.module.css";
 
 const ModalDeleteLink = ({ isOpen, onClose, url }) => {
   const deleteLinkContent = (
     <>
-      <h2 className="title">링크 삭제</h2>
+      <h2 className={styles.modalTitle}>링크 삭제</h2>
       <p>{url}</p>
-      <button className="redButton">삭제하기</button>
+      <button className={styles.redButton}>삭제하기</button>
     </>
   );
 

@@ -3,7 +3,7 @@ import favoriteIcon from "../Assets/image/star.svg";
 import kebabIcon from "../Assets/image/kebab.svg";
 import defaultImg from "../Assets/image/defaultImg.svg";
 import { Kebab } from "@/components/Kebab";
-import "@/styles/FolderCard.module.css";
+import styles from "@/styles/Card.module.css";
 
 export function FolderCard({ cardInfo }) {
   const { image_source, created_at, description, url } = cardInfo;
@@ -69,28 +69,28 @@ export function FolderCard({ cardInfo }) {
     <>
       <main>
         <a href={url} target="_blank">
-          <div className="folderCard">
-            <div className="cardImgContainer">
-              <img src={src} className="cardImg" alt={alt}></img>
+          <div className={styles.folderCard}>
+            <div className={styles.cardImgContainer}>
+              <img src={src} className={styles.cardImg} alt={alt}></img>
               <div>
                 <img
                   src={favoriteIcon}
-                  className="favoriteImg"
+                  className={styles.favoriteImg}
                   alt="즐겨찾기"
                 ></img>
                 <img
                   src={kebabIcon}
-                  className="kebabImg"
+                  className={styles.kebabImg}
                   alt="더보기"
                   onClick={handleClickKebab}
                 ></img>
                 {kebabToggle && <Kebab url={url} />}
               </div>
             </div>
-            <div className="cardContents">
-              <p className="createdFrom">{getCreatedFrom(created_at)}</p>
-              <p className="description">{description}</p>
-              <p className="createdAt">{createdAtDate}</p>
+            <div className={styles.cardContents}>
+              <p className={styles.createdForm}>{getCreatedFrom(created_at)}</p>
+              <p className={styles.description}>{description}</p>
+              <p className={styles.createdAt}>{createdAtDate}</p>
             </div>
           </div>
         </a>

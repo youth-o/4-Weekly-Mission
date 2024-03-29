@@ -1,6 +1,6 @@
 import ModalContainer from "@/components/Modal/ModalContainer";
 import { useFolder } from "../../Hooks/useFolder";
-import "@/styles/Modal.module.css";
+import styles from "@/styles/Modal.module.css";
 
 const ModalAddLinkToFolder = ({ isOpen, onClose, selectedFolderName }) => {
   const { folder } = useFolder();
@@ -8,16 +8,16 @@ const ModalAddLinkToFolder = ({ isOpen, onClose, selectedFolderName }) => {
   const addFolderContent = (
     <>
       <h2 className="title">폴더에 추가</h2>
-      <div className="menuLists">
+      <div className={styles.menuLists}>
         {folder &&
           folder.map((eachFolder) => (
-            <div className="menuList">
+            <div className={styles.menuList}>
               {eachFolder.name}
               <p>{eachFolder.link.count}개 링크</p>
             </div>
           ))}
       </div>
-      <button className="blueButton">추가하기</button>
+      <button className={styles.blueButton}>추가하기</button>
     </>
   );
 
