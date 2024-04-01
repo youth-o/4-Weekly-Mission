@@ -1,6 +1,6 @@
 import Modal from "react-modal";
-import closeIcon from "../../Assets/image/close.png";
 import styles from "@/styles/Modal.module.css";
+import Image from "next/image";
 
 const ModalContainer = ({ isOpen, onClose, children }) => {
   const customStyles = {
@@ -22,12 +22,14 @@ const ModalContainer = ({ isOpen, onClose, children }) => {
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
       <div className={styles.modalContainer}>
-        <img
-          src={closeIcon}
+        <Image
+          src="/images/close.png"
           alt="모달 닫기 버튼"
+          width={24}
+          height={24}
           onClick={onClose}
           className="closeImg"
-        ></img>
+        />
         {children}
       </div>
     </Modal>

@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../Assets/image/logo.svg";
 import styles from "@/styles/SharedHeader.module.css";
+import Image from "next/image";
 
 export function Nav({ profile }) {
   return (
@@ -9,16 +9,24 @@ export function Nav({ profile }) {
         <div className={styles.nav}>
           <div>
             <a href="index.html">
-              <img className={styles.logo} src={logo} alt="로고 사진" />
+              <Image
+                className={styles.logo}
+                width={133}
+                height={24}
+                src="/images/logo.svg"
+                alt="로고 사진"
+              />
             </a>
           </div>
           {profile ? (
             <div className={styles.profile}>
-              <img
+              <Image
                 src={profile.image}
                 alt="userProfileImg"
+                width={10}
+                height={10}
                 className={styles.profileImg}
-              ></img>
+              />
               <span className={styles.userEmail}>{profile.email}</span>
             </div>
           ) : (

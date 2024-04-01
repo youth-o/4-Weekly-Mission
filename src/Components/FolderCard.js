@@ -1,9 +1,7 @@
 import { useState } from "react";
-import favoriteIcon from "../Assets/image/star.svg";
-import kebabIcon from "../Assets/image/kebab.svg";
-import defaultImg from "../Assets/image/defaultImg.svg";
 import { Kebab } from "@/components/Kebab";
 import styles from "@/styles/Card.module.css";
+import Image from "next/image";
 
 export function FolderCard({ cardInfo }) {
   const { image_source, created_at, description, url } = cardInfo;
@@ -62,7 +60,7 @@ export function FolderCard({ cardInfo }) {
     return `${Math.floor(years)} years ago`;
   };
 
-  const src = image_source ? image_source : defaultImg;
+  const src = image_source ? image_source : "/images/defaultImg.svg";
   const alt = image_source ? "카드이미지" : "기본이미지";
 
   return (
@@ -73,17 +71,21 @@ export function FolderCard({ cardInfo }) {
             <div className={styles.cardImgContainer}>
               <img src={src} className={styles.cardImg} alt={alt}></img>
               <div>
-                <img
-                  src={favoriteIcon}
+                <Image
+                  src="/images/star.svg"
+                  width={30}
+                  height={30}
                   className={styles.favoriteImg}
                   alt="즐겨찾기"
-                ></img>
-                <img
-                  src={kebabIcon}
+                />
+                <Image
+                  src="/images/kebab.svg"
+                  width={21}
+                  height={17}
                   className={styles.kebabImg}
                   alt="더보기"
                   onClick={handleClickKebab}
-                ></img>
+                />
                 {kebabToggle && <Kebab url={url} />}
               </div>
             </div>

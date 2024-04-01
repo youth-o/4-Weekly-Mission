@@ -1,9 +1,6 @@
 import React from "react";
-import facebookImg from "../Assets/image/facebook.svg";
-import twitterImg from "../Assets/image/twitter.svg";
-import youtubeImg from "../Assets/image/youtube.svg";
-import instaImg from "../Assets/image/instagram.svg";
 import styles from "@/styles/Footer.module.css";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -21,30 +18,38 @@ export function Footer() {
           </div>
           <div className={styles.footerWebsite}>
             <a href="https://www.facebook.com/" target="_blank">
-              <img
+              <Image
                 className={styles.footerImage}
-                src={facebookImg}
+                src="/images/facebook.svg"
+                width={20}
+                height={20}
                 alt="페이스북 로고"
               />
             </a>
             <a href="https://twitter.com/?lang=ko" target="_blank">
-              <img
+              <Image
                 className={styles.footerImage}
-                src={twitterImg}
+                src="/images/twitter.svg"
+                width={20}
+                height={20}
                 alt="트위터 로고"
               />
             </a>
             <a href="https://www.youtube.com/" target="_blank">
-              <img
+              <Image
                 className={styles.footerImage}
-                src={youtubeImg}
+                src="/images/youtube.svg"
+                width={20}
+                height={20}
                 alt="유튜브 로고"
               />
             </a>
             <a href="https://www.instagram.com/" target="_blank">
-              <img
+              <Image
                 className={styles.footerImage}
-                src={instaImg}
+                src="/images/instagram.svg"
+                width={20}
+                height={20}
                 alt="인스타그램 로고"
               />
             </a>

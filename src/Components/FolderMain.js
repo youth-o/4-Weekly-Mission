@@ -3,9 +3,9 @@ import { FolderCard } from "@/components/FolderCard";
 import { FolderMenu } from "@/components/FolderMenu";
 import { useLinks } from "../Hooks/useLinks";
 import FolderTools from "@/components/FolderTools";
-import search from "../Assets/image/Search.svg";
 import styles from "@/styles/FolderMain.module.css";
 import { useFolder } from "../Hooks/useFolder";
+import Image from "next/image";
 
 export function FolderMain() {
   const { currentMenu, setCurrentMenu } = useFolder();
@@ -47,12 +47,14 @@ export function FolderMain() {
             value={searchValue}
             onChange={handleSearchData}
           ></input>
-          <img
-            src={search}
+          <Image
+            src="/images/search.svg"
+            width={16}
+            height={16}
             className={styles.searchImg}
             alt="검색 아이콘"
             onClick={handleInputValue}
-          ></img>
+          />
         </div>
       </div>
 

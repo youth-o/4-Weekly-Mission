@@ -1,6 +1,6 @@
-import searchIcon from "../Assets/image/Search.svg";
 import { SharedCard } from "@/components/SharedCard";
 import styles from "@/styles/FolderMain.module.css";
+import Image from "next/image";
 
 export function SharedMain({ cards }) {
   return (
@@ -11,11 +11,13 @@ export function SharedMain({ cards }) {
             className={styles.searchInput}
             placeholder="링크를 검색해 보세요."
           ></input>
-          <img
-            src={searchIcon}
+          <Image
+            src="/images/Search.svg"
             className={styles.searchImg}
+            width={16}
+            height={16}
             alt="검색 아이콘"
-          ></img>
+          />
         </div>
       </div>
 

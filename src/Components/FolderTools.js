@@ -1,10 +1,8 @@
-import shareIcon from "../Assets/image/share.svg";
-import penIcon from "../Assets/image/pen.svg";
-import deleteIcon from "../Assets/image/delete.svg";
 import styles from "@/styles/FolderTools.module.css";
 import ModalEdit from "@/components/Modal/ModalEdit";
 import useModalOpen from "../Hooks/useModalOpen";
 import ModalDeleteFolder from "@/components/Modal/ModalDeleteFolder";
+import Image from "next/image";
 
 function FolderTools({ id, currentMenu }) {
   const { handleModalOpen, isOpen, setIsOpen, clickValue, setClickValue } =
@@ -14,11 +12,18 @@ function FolderTools({ id, currentMenu }) {
     <>
       <div className={styles.tools}>
         <div className={styles.icon}>
-          <img src={shareIcon} alt="공유 아이콘" />
+          <Image
+            src="/images/share.svg"
+            alt="공유 아이콘"
+            width={18}
+            height={18}
+          />
         </div>
         <div className={styles.icon}>
-          <img
-            src={penIcon}
+          <Image
+            src="/images/pen.svg"
+            width={18}
+            height={18}
             alt="이름변경 아이콘"
             onClick={() => {
               setClickValue("이름 변경");
@@ -27,8 +32,10 @@ function FolderTools({ id, currentMenu }) {
           />
         </div>
         <div className={styles.icon}>
-          <img
-            src={deleteIcon}
+          <Image
+            src="/images/delete.svg"
+            width={18}
+            height={18}
             alt="삭제 아이콘"
             onClick={() => {
               setClickValue("삭제");
