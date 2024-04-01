@@ -25,6 +25,7 @@ body {
   width: 100%;
   align-items: center;
   justify-content: center;
+  background-color: #f0f6ff;
 }
 
 footer {
@@ -34,6 +35,10 @@ footer {
 
 a {
   text-decoration: none;
+}
+
+form {
+  gap: 12px;
 }
 
 main {

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "@/styles/Card.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export function SharedCard({ cardInfo }) {
   const { imageSource, createdAt, description, url } = cardInfo;
@@ -55,7 +56,7 @@ export function SharedCard({ cardInfo }) {
   return (
     <>
       <main>
-        <a href={url} target="_blank">
+        <Link href={url} target="_blank">
           <div className={styles.sharedCard}>
             <div className={styles.cardImgContainer}>
               <Image
@@ -72,7 +73,7 @@ export function SharedCard({ cardInfo }) {
               <p className={styles.createdAt}>{createdAtDate}</p>
             </div>
           </div>
-        </a>
+        </Link>
       </main>
     </>
   );
