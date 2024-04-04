@@ -3,7 +3,7 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { SharedMain } from "../components/SharedMain";
 import { useState, useEffect } from "react";
-import { getFolder, getProfile } from "../API/SharedPageApi";
+import { getFolder, getProfile } from "../api/SharedPageApi";
 
 function SharedPage() {
   const [profile, setProfile] = useState(null);

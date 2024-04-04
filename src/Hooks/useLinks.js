@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getFolderById } from "../API/FolderPageApi";
+import { getFolderById } from "../api/FolderPageApi";
 
 export const useLinks = () => {
   const [links, setLinks] = useState([]);

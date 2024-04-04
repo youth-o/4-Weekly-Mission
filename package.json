@@ -1,5 +1,5 @@
 {
-  "name": "1-weekly-mission",
+  "name": "4-weekly-mission",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "eslint": "^8.56.0",
-    "eslint-plugin-react": "^7.33.2"
+    "eslint-plugin-react": "^7.33.2",
+    "typescript": "5.4.3"
   }
 }

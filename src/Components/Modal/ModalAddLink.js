@@ -1,5 +1,5 @@
 import ModalContainer from "@/components/Modal/ModalContainer";
-import { useFolder } from "../../Hooks/useFolder";
+import { useFolder } from "../../hooks/useFolder";
 import styles from "@/styles/Modal.module.css";
 
 const ModalAddLinkToFolder = ({ isOpen, onClose, selectedFolderName }) => {

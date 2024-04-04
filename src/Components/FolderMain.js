@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { FolderCard } from "@/components/FolderCard";
 import { FolderMenu } from "@/components/FolderMenu";
-import { useLinks } from "../Hooks/useLinks";
+import { useLinks } from "../hooks/useLinks";
 import FolderTools from "@/components/FolderTools";
 import styles from "@/styles/FolderMain.module.css";
-import { useFolder } from "../Hooks/useFolder";
+import { useFolder } from "../hooks/useFolder";
 import Image from "next/image";
 
 export function FolderMain() {

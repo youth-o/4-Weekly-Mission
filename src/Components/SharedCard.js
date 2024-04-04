@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "@/styles/Card.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +13,7 @@ export function SharedCard({ cardInfo }) {
 
   const getCreatedFrom = () => {
     const now = new Date();
-    const timeDifference = now - inputDate;
+    const timeDifference = now.getTime() - inputDate.getTime();
 
     const minutes = Math.floor(timeDifference / (1000 * 60));
     const hours = Math.floor(timeDifference / (1000 * 60 * 60));

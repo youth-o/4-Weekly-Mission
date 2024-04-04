@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getFolderName } from "../API/FolderPageApi";
+import { getFolderName } from "../api/FolderPageApi";
 
 export const useFolder = () => {
   const [folder, setFolder] = useState([]);
