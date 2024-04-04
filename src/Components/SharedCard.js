@@ -53,6 +53,9 @@ export function SharedCard({ cardInfo }) {
     return `${Math.floor(years)} years ago`;
   };
 
+  const src = imageSource ? imageSource : "/images/defaultImg.svg";
+  const alt = imageSource ? "카드이미지" : "기본이미지";
+
   return (
     <>
       <main>
@@ -60,11 +63,11 @@ export function SharedCard({ cardInfo }) {
           <div className={styles.sharedCard}>
             <div className={styles.cardImgContainer}>
               <Image
-                src={imageSource}
+                src={src}
                 width={340}
                 height={200}
                 className={styles.cardImg}
-                alt="카드 이미지"
+                alt={alt}
               />
             </div>
             <div className={styles.cardContents}>

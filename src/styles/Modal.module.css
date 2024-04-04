@@ -5,6 +5,7 @@
 }
 
 .modalContainer {
+  position: relative;
   display: inline-flex;
   flex-direction: column;
   padding: 32px 40px;
@@ -25,8 +26,8 @@
 
 .closeImg {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 10px;
+  top: 10px;
   cursor: pointer;
 }
 

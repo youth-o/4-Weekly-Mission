@@ -28,7 +28,7 @@ const ModalContainer = ({ isOpen, onClose, children }) => {
           width={24}
           height={24}
           onClick={onClose}
-          className="closeImg"
+          className={styles.closeImg}
         />
         {children}
       </div>

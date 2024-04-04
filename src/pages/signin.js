@@ -3,18 +3,20 @@ import styles from "@/styles/Signin.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-const SignInput = () => {
+function SignIn() {
   return (
     <>
       <div className={styles.body}>
         <div className={styles.headerContainer}>
-          <Image
-            src="/images/logo.svg"
-            width={210}
-            height={38}
-            className={styles.logo}
-            alt="로고 이미지"
-          />
+          <Link href="/">
+            <Image
+              src="/images/logo.svg"
+              width={210}
+              height={38}
+              className={styles.logo}
+              alt="로고 이미지"
+            />
+          </Link>
           <div className={styles.noSignup}>
             회원이 아니신가요?{" "}
             <Link className={styles.signup} href="/signup">
@@ -50,6 +52,6 @@ const SignInput = () => {
       </div>
     </>
   );
-};
+}
 
-export default SignInput;
+export default SignIn;
