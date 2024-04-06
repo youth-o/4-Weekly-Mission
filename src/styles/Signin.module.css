@@ -30,7 +30,6 @@
 
 .inputContainer {
   width: 400px;
-  gap: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,6 +45,11 @@
   border: 1px solid #ccd5e3;
   outline-color: #6d6afe;
   background-color: #fff;
+  margin-bottom: 12px;
+}
+
+.inputContainer label {
+  margin-bottom: 12px;
 }
 
 .pwContainer {

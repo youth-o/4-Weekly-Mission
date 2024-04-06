@@ -2,7 +2,7 @@ import styles from "@/styles/Signin.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-function SingUpFooter() {
+function SignUpFooter() {
   return (
     <div className={styles.socialContainer}>
       <div className={styles.socialText}>다른 방식으로 가입하기</div>
@@ -31,4 +31,4 @@ function SingUpFooter() {
   );
 }
 
-export default SingUpFooter;
+export default SignUpFooter;

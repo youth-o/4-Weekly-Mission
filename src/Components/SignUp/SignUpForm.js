@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Signin.module.css";
 import Image from "next/image";
 
-function SignInForm() {
+function SignUpForm() {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [isPasswordOpened, setIsPasswordOpened] = useState(false);
-  const [IdErrorMessage, setIdErrorMessage] = useState("");
+  const [idErrorMessage, setIdErrorMessage] = useState("");
   const [pwErrorMessage, setPwErrorMessage] = useState("");
+  // const [pwRepErrorMessage, setPwRepErrorMessage] = useState("");
   const PasswordInputRef = useRef(null);
   const IdInputRef = useRef(null);
 
@@ -60,15 +61,15 @@ function SignInForm() {
       <div className={styles.inputContainer}>
         <label htmlFor="email">이메일</label>
         <input
-          className={IdErrorMessage ? styles.errorFocus : ""}
+          className={idErrorMessage ? styles.errorFocus : ""}
           placeholder="내용 입력"
           onChange={handleIdInputChange}
           value={idValue}
           id="email"
           ref={IdInputRef}
         />
-        <div className={IdErrorMessage ? styles.error : ""}>
-          {IdErrorMessage}
+        <div className={idErrorMessage ? styles.error : ""}>
+          {idErrorMessage}
         </div>
       </div>
       <div className={styles.inputContainer}>
@@ -96,12 +97,36 @@ function SignInForm() {
         <div className={pwErrorMessage ? styles.error : ""}>
           {pwErrorMessage}
         </div>
+        <label for="password">비밀번호 확인</label>
+        <div className={styles.pwContainer}>
+          <input
+            className={pwErrorMessage ? styles.errorFocus : ""}
+            ref={PasswordInputRef}
+            placeholder="내용 입력"
+            type="password"
+            onChange={handlePwInputChange}
+            value={pwValue}
+            id="password"
+          />
+          <Image
+            className={styles.eye}
+            src={
+              setIsPasswordOpened ? "/images/eye-on.svg" : "/images/eye-off.svg"
+            }
+            width={16}
+            height={16}
+            onClick={handleEyeButtonClicked}
+          />
+        </div>
+        <div className={pwErrorMessage ? styles.error : ""}>
+          {pwErrorMessage}
+        </div>
       </div>
       <button className={styles.loginBtn} type="submit">
-        로그인
+        회원가입
       </button>
     </form>
   );
 }
 
-export default SignInForm;
+export default SignUpForm;
