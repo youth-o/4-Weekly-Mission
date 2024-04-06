@@ -10,7 +10,7 @@ export const getUserData = async () => {
       image: result.data[0].image_source,
     };
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

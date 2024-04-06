@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Signin.module.css";
 import Image from "next/image";
 
-export function Input() {
+function SignInForm() {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [isPasswordOpened, setIsPasswordOpened] = useState(false);
@@ -99,3 +99,5 @@ export function Input() {
     </form>
   );
 }
+
+export default SignInForm;
