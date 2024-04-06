@@ -1,7 +1,7 @@
-import { SharedHeader } from "../components/SharedHeader";
-import { Nav } from "../components/Nav";
-import { Footer } from "../components/Footer";
-import { SharedMain } from "../components/SharedMain";
+import { SharedHeader } from "../components/Shared/SharedHeader";
+import { Nav } from "../components/common/Nav";
+import { Footer } from "../components/common/Footer";
+import { SharedMain } from "../components/Shared/SharedMain";
 import { useState, useEffect } from "react";
 import { getFolder, getProfile } from "../api/SharedPageApi";
 

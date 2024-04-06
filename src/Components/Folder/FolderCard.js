@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Kebab } from "@/components/Kebab";
+import { Kebab } from "@/components/common/Kebab";
 import styles from "@/styles/Card.module.css";
 import Image from "next/image";
 

@@ -1,6 +1,6 @@
 import styles from "@/styles/FolderTools.module.css";
 import ModalEdit from "@/components/Modal/ModalEdit";
-import useModalOpen from "../hooks/useModalOpen";
+import useModalOpen from "../../hooks/useModalOpen";
 import ModalDeleteFolder from "@/components/Modal/ModalDeleteFolder";
 import Image from "next/image";
 

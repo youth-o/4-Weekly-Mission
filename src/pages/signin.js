@@ -1,6 +1,6 @@
-import SingInFooter from "@/components/SignInFooter";
-import SignInForm from "@/components/SignInForm";
-import SignInHeader from "@/components/SignInHeader";
+import SingInFooter from "@/components/SignIn/SignInFooter";
+import SignInForm from "@/components/SignIn/SignInForm";
+import SignInHeader from "@/components/SignIn/SignInHeader";
 import styles from "@/styles/Signin.module.css";
 
 function SignIn() {

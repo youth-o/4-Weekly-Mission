@@ -1,4 +1,4 @@
-import { SharedCard } from "@/components/SharedCard";
+import { SharedCard } from "@/components/Shared/SharedCard";
 import styles from "@/styles/FolderMain.module.css";
 import Image from "next/image";
 

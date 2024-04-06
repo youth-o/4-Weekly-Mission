@@ -1,6 +1,6 @@
 import styles from "@/styles/FolderHeader.module.css";
 import ModalAddLink from "@/components/Modal/ModalAddLink";
-import useModalOpen from "../hooks/useModalOpen";
+import useModalOpen from "../../hooks/useModalOpen";
 import Image from "next/image";
 
 export function FolderHeader() {
