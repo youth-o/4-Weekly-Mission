@@ -2,7 +2,7 @@ import styles from "@/styles/Signin.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-function SignInHeader() {
+function SignUpHeader() {
   return (
     <div className={styles.headerContainer}>
       <Link href="/">
@@ -16,7 +16,7 @@ function SignInHeader() {
       </Link>
       <div className={styles.noSignup}>
         회원이신가요?
-        <Link className={styles.signup} href="/signup">
+        <Link className={styles.signup} href="/signin">
           로그인 하기
         </Link>
       </div>
@@ -24,4 +24,4 @@ function SignInHeader() {
   );
 }
 
-export default SignInHeader;
+export default SignUpHeader;
