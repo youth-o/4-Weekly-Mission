@@ -6,7 +6,7 @@ function SignInForm() {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [isPasswordOpened, setIsPasswordOpened] = useState(false);
-  const [IdErrorMessage, setIdErrorMessage] = useState("");
+  const [idErrorMessage, setIdErrorMessage] = useState("");
   const [pwErrorMessage, setPwErrorMessage] = useState("");
   const PasswordInputRef = useRef(null);
   const IdInputRef = useRef(null);
@@ -55,29 +55,31 @@ function SignInForm() {
     }
   }, [pwValue]);
 
+  console.log(idErrorMessage);
+
   return (
     <form>
       <div className={styles.inputContainer}>
         <label htmlFor="email">이메일</label>
         <input
-          className={IdErrorMessage ? styles.errorFocus : ""}
-          placeholder="내용 입력"
+          className={idErrorMessage ? styles.errorFocus : styles.notError}
+          placeholder="이메일을 입력해 주세요."
           onChange={handleIdInputChange}
           value={idValue}
           id="email"
           ref={IdInputRef}
         />
-        <div className={IdErrorMessage ? styles.error : ""}>
-          {IdErrorMessage}
+        <div className={idErrorMessage ? styles.error : ""}>
+          {idErrorMessage}
         </div>
       </div>
       <div className={styles.inputContainer}>
         <label for="password">비밀번호</label>
         <div className={styles.pwContainer}>
           <input
-            className={pwErrorMessage ? styles.errorFocus : ""}
+            className={pwErrorMessage ? styles.errorFocus : styles.notError}
             ref={PasswordInputRef}
-            placeholder="내용 입력"
+            placeholder="비밀번호를 입력해 주세요."
             type="password"
             onChange={handlePwInputChange}
             value={pwValue}

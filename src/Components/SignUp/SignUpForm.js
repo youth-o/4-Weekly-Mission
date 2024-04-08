@@ -5,14 +5,17 @@ import Image from "next/image";
 function SignUpForm() {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
+  const [pwRepValue, setPwRepValue] = useState("");
   const [isPasswordOpened, setIsPasswordOpened] = useState(false);
+  const [isPwRepOpened, setIsPwRepOpened] = useState(false);
   const [idErrorMessage, setIdErrorMessage] = useState("");
   const [pwErrorMessage, setPwErrorMessage] = useState("");
-  // const [pwRepErrorMessage, setPwRepErrorMessage] = useState("");
+  const [pwRepErrorMessage, setPwRepErrorMessage] = useState("");
   const PasswordInputRef = useRef(null);
   const IdInputRef = useRef(null);
+  const PwRepInputRef = useRef(null);
 
-  const handleEyeButtonClicked = (e) => {
+  const handlePwEyeButtonClicked = (e) => {
     e.preventDefault();
     if (isPasswordOpened) {
       PasswordInputRef.current.type = "text";
@@ -22,12 +25,26 @@ function SignUpForm() {
     return setIsPasswordOpened(true);
   };
 
+  const handlePwRepEyeButtonClicked = (e) => {
+    e.preventDefault();
+    if (isPwRepOpened) {
+      PwRepInputRef.current.type = "text";
+      return setIsPwRepOpened(false);
+    }
+    PwRepInputRef.current.type = "password";
+    return setIsPwRepOpened(true);
+  };
+
   const handleIdInputChange = (e) => {
     setIdValue(e.target.value);
   };
 
   const handlePwInputChange = (e) => {
     setPwValue(e.target.value);
+  };
+
+  const handlePwRepInputChange = (e) => {
+    setPwRepValue(e.target.value);
   };
 
   useEffect(() => {
@@ -48,21 +65,35 @@ function SignUpForm() {
   useEffect(() => {
     if (PasswordInputRef.current) {
       PasswordInputRef.current.addEventListener("focusout", () => {
-        if (!pwValue.trim()) {
-          return setPwErrorMessage("비밀번호를 입력해 주세요.");
+        const pwRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
+        if (pwValue && !pwRegExp.test(pwValue)) {
+          return setPwErrorMessage(
+            "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요."
+          );
         }
         return setPwErrorMessage("");
       });
     }
   }, [pwValue]);
 
+  useEffect(() => {
+    if (PwRepInputRef.current) {
+      PwRepInputRef.current.addEventListener("focusout", () => {
+        if (!(pwRepValue.trim() === pwValue.trim())) {
+          return setPwRepErrorMessage("비밀번호가 일치하지 않아요.");
+        }
+        return setPwRepErrorMessage("");
+      });
+    }
+  });
+
   return (
     <form>
       <div className={styles.inputContainer}>
         <label htmlFor="email">이메일</label>
         <input
-          className={idErrorMessage ? styles.errorFocus : ""}
-          placeholder="내용 입력"
+          className={idErrorMessage ? styles.errorFocus : styles.notError}
+          placeholder="이메일을 입력해 주세요."
           onChange={handleIdInputChange}
           value={idValue}
           id="email"
@@ -76,9 +107,9 @@ function SignUpForm() {
         <label for="password">비밀번호</label>
         <div className={styles.pwContainer}>
           <input
-            className={pwErrorMessage ? styles.errorFocus : ""}
+            className={pwErrorMessage ? styles.errorFocus : styles.notError}
             ref={PasswordInputRef}
-            placeholder="내용 입력"
+            placeholder="영문, 숫자를 조합해 8자 이상 입력해 주세요."
             type="password"
             onChange={handlePwInputChange}
             value={pwValue}
@@ -91,7 +122,7 @@ function SignUpForm() {
             }
             width={16}
             height={16}
-            onClick={handleEyeButtonClicked}
+            onClick={handlePwEyeButtonClicked}
           />
         </div>
         <div className={pwErrorMessage ? styles.error : ""}>
@@ -100,12 +131,12 @@ function SignUpForm() {
         <label for="password">비밀번호 확인</label>
         <div className={styles.pwContainer}>
           <input
-            className={pwErrorMessage ? styles.errorFocus : ""}
-            ref={PasswordInputRef}
-            placeholder="내용 입력"
+            className={pwRepErrorMessage ? styles.errorFocus : styles.notError}
+            ref={PwRepInputRef}
+            placeholder="비밀번호와 일치하는 값을 입력해 주세요."
             type="password"
-            onChange={handlePwInputChange}
-            value={pwValue}
+            onChange={handlePwRepInputChange}
+            value={pwRepValue}
             id="password"
           />
           <Image
@@ -115,11 +146,11 @@ function SignUpForm() {
             }
             width={16}
             height={16}
-            onClick={handleEyeButtonClicked}
+            onClick={handlePwRepEyeButtonClicked}
           />
         </div>
-        <div className={pwErrorMessage ? styles.error : ""}>
-          {pwErrorMessage}
+        <div className={pwRepErrorMessage ? styles.error : ""}>
+          {pwRepErrorMessage}
         </div>
       </div>
       <button className={styles.loginBtn} type="submit">

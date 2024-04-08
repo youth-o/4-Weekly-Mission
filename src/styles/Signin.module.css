@@ -42,10 +42,13 @@
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  border: 1px solid #ccd5e3;
-  outline-color: #6d6afe;
   background-color: #fff;
   margin-bottom: 12px;
+}
+
+.notError {
+  border: 1px solid #ccd5e3;
+  outline-color: #6d6afe;
 }
 
 .inputContainer label {
