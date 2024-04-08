@@ -7,7 +7,11 @@ function SignUpFooter() {
     <div className={styles.socialContainer}>
       <div className={styles.socialText}>다른 방식으로 가입하기</div>
       <div className={styles.socialLogin}>
-        <Link className={styles.socialImg} href="https://www.google.com/">
+        <Link
+          className={styles.socialImg}
+          href="https://www.google.com/"
+          target="_blank"
+        >
           <Image
             src="/images/google.svg"
             width={42}
@@ -18,6 +22,7 @@ function SignUpFooter() {
         <Link
           className={styles.socialImg}
           href="https://www.kakaocorp.com/page/"
+          target="_blank"
         >
           <Image
             src="/images/kakaotalk.svg"

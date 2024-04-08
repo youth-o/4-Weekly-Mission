@@ -7,7 +7,11 @@ function SingInFooter() {
     <div className={styles.socialContainer}>
       <div className={styles.socialText}>소셜 로그인</div>
       <div className={styles.socialLogin}>
-        <Link className={styles.socialImg} href="https://www.google.com/">
+        <Link
+          className={styles.socialImg}
+          href="https://www.google.com/"
+          target="_blank"
+        >
           <Image
             src="/images/google.svg"
             width={42}
@@ -18,6 +22,7 @@ function SingInFooter() {
         <Link
           className={styles.socialImg}
           href="https://www.kakaocorp.com/page/"
+          target="_blank"
         >
           <Image
             src="/images/kakaotalk.svg"

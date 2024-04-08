@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Signin.module.css";
 import Image from "next/image";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 function SignInForm() {
   const [idValue, setIdValue] = useState("");
@@ -10,6 +12,52 @@ function SignInForm() {
   const [pwErrorMessage, setPwErrorMessage] = useState("");
   const PasswordInputRef = useRef(null);
   const IdInputRef = useRef(null);
+
+  const router = useRouter();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(
+        "https://bootcamp-api.codeit.kr/api/sign-in",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: idValue,
+            password: pwValue,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem("accessToken", data.accessToken);
+        router.push("/folder");
+      } else {
+        if (
+          data.error &&
+          typeof data.error === "string" &&
+          data.error.includes("Email")
+        ) {
+          setIdErrorMessage("올바른 이메일 주소가 아닙니다.");
+        }
+        if (
+          data.error &&
+          typeof data.error === "string" &&
+          data.error.includes("Password")
+        ) {
+          setPwErrorMessage(
+            "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요."
+          );
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleEyeButtonClicked = (e) => {
     e.preventDefault();
@@ -55,10 +103,15 @@ function SignInForm() {
     }
   }, [pwValue]);
 
-  console.log(idErrorMessage);
+  useEffect(() => {
+    if (window.localStorage.getItem("accessToken")) {
+      // 로컬스토리지에서 가져오기
+      router.push("/folder");
+    }
+  }, []);
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className={styles.inputContainer}>
         <label htmlFor="email">이메일</label>
         <input
@@ -67,6 +120,7 @@ function SignInForm() {
           onChange={handleIdInputChange}
           value={idValue}
           id="email"
+          name="email"
           ref={IdInputRef}
         />
         <div className={idErrorMessage ? styles.error : ""}>
@@ -84,11 +138,12 @@ function SignInForm() {
             onChange={handlePwInputChange}
             value={pwValue}
             id="password"
+            name="password"
           />
           <Image
             className={styles.eye}
             src={
-              setIsPasswordOpened ? "/images/eye-on.svg" : "/images/eye-off.svg"
+              isPasswordOpened ? "/images/eye-off.svg" : "/images/eye-on.svg"
             }
             width={16}
             height={16}
