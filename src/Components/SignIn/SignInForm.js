@@ -37,22 +37,8 @@ function SignInForm() {
         localStorage.setItem("accessToken", data.accessToken);
         router.push("/folder");
       } else {
-        if (
-          data.error &&
-          typeof data.error === "string" &&
-          data.error.includes("Email")
-        ) {
-          setIdErrorMessage("올바른 이메일 주소가 아닙니다.");
-        }
-        if (
-          data.error &&
-          typeof data.error === "string" &&
-          data.error.includes("Password")
-        ) {
-          setPwErrorMessage(
-            "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요."
-          );
-        }
+        setIdErrorMessage("이메일을 확인해 주세요.");
+        setPwErrorMessage("비밀번호를 확인해 주세요.");
       }
     } catch (error) {
       console.error(error);
@@ -102,13 +88,6 @@ function SignInForm() {
       });
     }
   }, [pwValue]);
-
-  useEffect(() => {
-    if (window.localStorage.getItem("accessToken")) {
-      // 로컬스토리지에서 가져오기
-      router.push("/folder");
-    }
-  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
