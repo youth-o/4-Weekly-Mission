@@ -118,7 +118,7 @@ function SignUpForm() {
           <Image
             className={styles.eye}
             src={
-              setIsPasswordOpened ? "/images/eye-on.svg" : "/images/eye-off.svg"
+              isPasswordOpened ? "/images/eye-off.svg" : "/images/eye-on.svg"
             }
             width={16}
             height={16}
@@ -141,9 +141,7 @@ function SignUpForm() {
           />
           <Image
             className={styles.eye}
-            src={
-              setIsPasswordOpened ? "/images/eye-on.svg" : "/images/eye-off.svg"
-            }
+            src={isPwRepOpened ? "/images/eye-off.svg" : "/images/eye-on.svg"}
             width={16}
             height={16}
             onClick={handlePwRepEyeButtonClicked}
