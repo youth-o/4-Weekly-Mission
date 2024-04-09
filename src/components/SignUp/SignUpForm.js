@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Signin.module.css";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 function SignUpForm() {
   const [idValue, setIdValue] = useState("");
@@ -14,9 +15,9 @@ function SignUpForm() {
   const PasswordInputRef = useRef(null);
   const IdInputRef = useRef(null);
   const PwRepInputRef = useRef(null);
+  const router = useRouter();
 
   const handlePwEyeButtonClicked = (e) => {
-    e.preventDefault();
     if (isPasswordOpened) {
       PasswordInputRef.current.type = "text";
       return setIsPasswordOpened(false);
@@ -26,7 +27,6 @@ function SignUpForm() {
   };
 
   const handlePwRepEyeButtonClicked = (e) => {
-    e.preventDefault();
     if (isPwRepOpened) {
       PwRepInputRef.current.type = "text";
       return setIsPwRepOpened(false);
@@ -73,6 +73,31 @@ function SignUpForm() {
     } catch (error) {
       console.error(error);
     }
+    try {
+      checkEmail(idValue);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const checkEmail = async (email) => {
+    try {
+      const response = await fetch(
+        "https://bootcamp-api.codeit.kr/api/check-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
+      if (response.status === 409) {
+        setIdErrorMessage("이미 사용 중인 이메일입니다.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -85,7 +110,6 @@ function SignUpForm() {
         if (!EMAIL_REG_EXP.test(idValue.trim())) {
           return setIdErrorMessage("올바른 이메일 주소가 아닙니다.");
         }
-        return setIdErrorMessage("");
       });
     }
   }, [idValue]);

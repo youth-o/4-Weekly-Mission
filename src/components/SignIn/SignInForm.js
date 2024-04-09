@@ -46,7 +46,6 @@ function SignInForm() {
   };
 
   const handleEyeButtonClicked = (e) => {
-    e.preventDefault();
     if (isPasswordOpened) {
       PasswordInputRef.current.type = "text";
       return setIsPasswordOpened(false);
