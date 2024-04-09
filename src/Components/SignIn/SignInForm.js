@@ -35,6 +35,7 @@ function SignInForm() {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
         router.push("/folder");
       } else {
         setIdErrorMessage("이메일을 확인해 주세요.");
@@ -107,7 +108,7 @@ function SignInForm() {
         </div>
       </div>
       <div className={styles.inputContainer}>
-        <label for="password">비밀번호</label>
+        <label htmlFor="password">비밀번호</label>
         <div className={styles.pwContainer}>
           <input
             className={pwErrorMessage ? styles.errorFocus : styles.notError}
@@ -127,6 +128,7 @@ function SignInForm() {
             width={16}
             height={16}
             onClick={handleEyeButtonClicked}
+            alt="눈 모양 아이콘"
           />
         </div>
         <div className={pwErrorMessage ? styles.error : ""}>

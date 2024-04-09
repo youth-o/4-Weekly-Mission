@@ -1,5 +1,13 @@
-module.exports = {
+const nextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: ["codeit-front.s3.ap-northeast-2.amazonaws.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "codeit-front.s3.ap-northeast-2.amazonaws.com",
+      },
+    ],
   },
 };
+
+module.exports = nextConfig;

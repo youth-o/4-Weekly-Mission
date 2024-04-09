@@ -123,6 +123,7 @@ function SignUpForm() {
             width={16}
             height={16}
             onClick={handlePwEyeButtonClicked}
+            alt="눈 모양 아이콘"
           />
         </div>
         <div className={pwErrorMessage ? styles.error : ""}>
@@ -145,6 +146,7 @@ function SignUpForm() {
             width={16}
             height={16}
             onClick={handlePwRepEyeButtonClicked}
+            alt="눈 모양 아이콘"
           />
         </div>
         <div className={pwRepErrorMessage ? styles.error : ""}>
