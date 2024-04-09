@@ -47,6 +47,34 @@ function SignUpForm() {
     setPwRepValue(e.target.value);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        "https://bootcamp-api.codeit.kr/api/sign-up",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: idValue,
+            password: pwValue,
+          }),
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem("accessToken", data.accessToken);
+        router.push("/folder");
+      } else {
+        return idErrorMessage, pwErrorMessage, pwRepErrorMessage;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (IdInputRef.current) {
       IdInputRef.current.addEventListener("focusout", () => {
@@ -88,7 +116,7 @@ function SignUpForm() {
   });
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className={styles.inputContainer}>
         <label htmlFor="email">이메일</label>
         <input
@@ -104,7 +132,7 @@ function SignUpForm() {
         </div>
       </div>
       <div className={styles.inputContainer}>
-        <label for="password">비밀번호</label>
+        <label htmlFor="password">비밀번호</label>
         <div className={styles.pwContainer}>
           <input
             className={pwErrorMessage ? styles.errorFocus : styles.notError}
@@ -129,7 +157,7 @@ function SignUpForm() {
         <div className={pwErrorMessage ? styles.error : ""}>
           {pwErrorMessage}
         </div>
-        <label for="password">비밀번호 확인</label>
+        <label htmlFor="password">비밀번호 확인</label>
         <div className={styles.pwContainer}>
           <input
             className={pwRepErrorMessage ? styles.errorFocus : styles.notError}

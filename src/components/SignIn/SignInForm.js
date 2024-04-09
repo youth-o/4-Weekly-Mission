@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Signin.module.css";
 import Image from "next/image";
-import axios from "axios";
 import { useRouter } from "next/router";
 
 function SignInForm() {
