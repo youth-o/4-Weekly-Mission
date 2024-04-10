@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { FolderMain } from "../components/FolderMain";
-import { Nav } from "../components/Nav";
-import { Footer } from "../components/Footer";
+import { FolderMain } from "../components/Folder/FolderMain";
+import { Nav } from "../components/common/Nav";
+import { Footer } from "../components/common/Footer";
 import { getProfile } from "../api/SharedPageApi";
-import { FolderHeader } from "../components/FolderHeader";
+import { FolderHeader } from "../components/Folder/FolderHeader";
 
 function FolderPage() {
   const [profile, setProfile] = useState(null);

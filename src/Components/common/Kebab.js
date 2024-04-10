@@ -1,5 +1,5 @@
 import styles from "@/styles/Kebab.module.css";
-import useModalOpen from "../hooks/useModalOpen";
+import useModalOpen from "../../hooks/useModalOpen";
 import ModalAddLink from "@/components/Modal/ModalAddLink";
 import ModalDeleteLink from "@/components/Modal/ModalDeleteLink";
 

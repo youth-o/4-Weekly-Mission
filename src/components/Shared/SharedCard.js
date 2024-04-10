@@ -1,19 +1,11 @@
-import { useState } from "react";
-import { Kebab } from "@/components/Kebab";
 import styles from "@/styles/Card.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
-export function FolderCard({ cardInfo }) {
-  const { image_source, created_at, description, url } = cardInfo;
-  const [kebabToggle, setKebabToggle] = useState(false);
+export function SharedCard({ cardInfo }) {
+  const { imageSource, createdAt, description, url } = cardInfo;
 
-  const handleClickKebab = (e) => {
-    e.preventDefault();
-    setKebabToggle(kebabToggle ? false : true);
-  };
-
-  const inputDate = new Date(created_at);
-
+  const inputDate = new Date(createdAt);
   const year = inputDate.getFullYear();
   const month = (inputDate.getMonth() + 1).toString().padStart(2, "0");
   const day = inputDate.getDate().toString().padStart(2, "0");
@@ -21,7 +13,7 @@ export function FolderCard({ cardInfo }) {
 
   const getCreatedFrom = () => {
     const now = new Date();
-    const timeDifference = now - inputDate;
+    const timeDifference = now.getTime() - inputDate.getTime();
 
     const minutes = Math.floor(timeDifference / (1000 * 60));
     const hours = Math.floor(timeDifference / (1000 * 60 * 60));
@@ -60,42 +52,30 @@ export function FolderCard({ cardInfo }) {
     return `${Math.floor(years)} years ago`;
   };
 
-  const src = image_source ? image_source : "/images/defaultImg.svg";
-  const alt = image_source ? "카드이미지" : "기본이미지";
+  const src = imageSource ? imageSource : "/images/defaultImg.svg";
+  const alt = imageSource ? "카드이미지" : "기본이미지";
 
   return (
     <>
       <main>
-        <a href={url} target="_blank">
-          <div className={styles.folderCard}>
+        <Link href={url} target="_blank">
+          <div className={styles.sharedCard}>
             <div className={styles.cardImgContainer}>
-              <img src={src} className={styles.cardImg} alt={alt}></img>
-              <div>
-                <Image
-                  src="/images/star.svg"
-                  width={30}
-                  height={30}
-                  className={styles.favoriteImg}
-                  alt="즐겨찾기"
-                />
-                <Image
-                  src="/images/kebab.svg"
-                  width={21}
-                  height={17}
-                  className={styles.kebabImg}
-                  alt="더보기"
-                  onClick={handleClickKebab}
-                />
-                {kebabToggle && <Kebab url={url} />}
-              </div>
+              <Image
+                src={src}
+                width={340}
+                height={200}
+                className={styles.cardImg}
+                alt={alt}
+              />
             </div>
             <div className={styles.cardContents}>
-              <p className={styles.createdForm}>{getCreatedFrom(created_at)}</p>
+              <p className={styles.createdFrom}>{getCreatedFrom(createdAt)}</p>
               <p className={styles.description}>{description}</p>
               <p className={styles.createdAt}>{createdAtDate}</p>
             </div>
           </div>
-        </a>
+        </Link>
       </main>
     </>
   );

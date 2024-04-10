@@ -1,8 +1,8 @@
-import { Button } from "@/components/Button";
+import { Button } from "@/components/common/Button";
 import styles from "@/styles/FolderMenu.module.css";
-import useModalOpen from "../hooks/useModalOpen";
+import useModalOpen from "../../hooks/useModalOpen";
 import ModalAddFolder from "@/components/Modal/ModalAddFolder";
-import { useFolderName } from "../hooks/useFolderName";
+import { useFolderName } from "../../hooks/useFolderName";
 
 export function FolderMenu({ onMenuChange }) {
   const { folderNames } = useFolderName();
