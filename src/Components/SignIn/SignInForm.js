@@ -4,8 +4,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 function SignInForm() {
-  const [idValue, setIdValue] = useState("");
-  const [pwValue, setPwValue] = useState("");
+  const [formData, setFormData] = useState({
+    id: "",
+    password: "",
+  });
   const [isPasswordOpened, setIsPasswordOpened] = useState(false);
   const [idErrorMessage, setIdErrorMessage] = useState("");
   const [pwErrorMessage, setPwErrorMessage] = useState("");
@@ -25,8 +27,8 @@ function SignInForm() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: idValue,
-            password: pwValue,
+            email: formData.id,
+            password: formData.password,
           }),
         }
       );
@@ -55,38 +57,38 @@ function SignInForm() {
   };
 
   const handleIdInputChange = (e) => {
-    setIdValue(e.target.value);
+    setFormData({ ...formData, id: e.target.value });
   };
 
   const handlePwInputChange = (e) => {
-    setPwValue(e.target.value);
+    setFormData({ ...formData, password: e.target.value });
   };
 
   useEffect(() => {
     if (IdInputRef.current) {
       IdInputRef.current.addEventListener("focusout", () => {
         const EMAIL_REG_EXP = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z.]+$/;
-        if (!idValue.trim()) {
+        if (!formData.id.trim()) {
           return setIdErrorMessage("이메일을 입력해 주세요.");
         }
-        if (!EMAIL_REG_EXP.test(idValue.trim())) {
+        if (!EMAIL_REG_EXP.test(formData.id.trim())) {
           return setIdErrorMessage("올바른 이메일 주소가 아닙니다.");
         }
         return setIdErrorMessage("");
       });
     }
-  }, [idValue]);
+  }, [formData.id]);
 
   useEffect(() => {
     if (PasswordInputRef.current) {
       PasswordInputRef.current.addEventListener("focusout", () => {
-        if (!pwValue.trim()) {
+        if (!formData.password.trim()) {
           return setPwErrorMessage("비밀번호를 입력해 주세요.");
         }
         return setPwErrorMessage("");
       });
     }
-  }, [pwValue]);
+  }, [formData.password]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -96,7 +98,7 @@ function SignInForm() {
           className={idErrorMessage ? styles.errorFocus : styles.notError}
           placeholder="이메일을 입력해 주세요."
           onChange={handleIdInputChange}
-          value={idValue}
+          value={formData.id}
           id="email"
           name="email"
           ref={IdInputRef}
@@ -114,7 +116,7 @@ function SignInForm() {
             placeholder="비밀번호를 입력해 주세요."
             type="password"
             onChange={handlePwInputChange}
-            value={pwValue}
+            value={formData.password}
             id="password"
             name="password"
           />
