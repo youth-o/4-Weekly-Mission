@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Signin.module.css";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import axios from "@/lib/axios";
 
 function SignInForm() {
   const [formData, setFormData] = useState({
@@ -19,22 +20,21 @@ function SignInForm() {
     event.preventDefault();
 
     try {
-      const response = await fetch(
-        "https://bootcamp-api.codeit.kr/api/sign-in",
+      const response = await axios.post(
+        "/sign-in",
         {
-          method: "POST",
+          email: formData.id,
+          password: formData.password,
+        },
+        {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            email: formData.id,
-            password: formData.password,
-          }),
         }
       );
 
-      const data = await response.json();
-      if (response.ok) {
+      if (response.status === 200) {
+        const data = response.data;
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
         router.push("/folder");
