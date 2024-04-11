@@ -2,11 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Signin.module.css";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import axios from "@/lib/axios";
 
 function SignUpForm() {
-  const [idValue, setIdValue] = useState("");
-  const [pwValue, setPwValue] = useState("");
-  const [pwRepValue, setPwRepValue] = useState("");
+  const [formData, setFormData] = useState({
+    id: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [isPasswordOpened, setIsPasswordOpened] = useState(false);
   const [isPwRepOpened, setIsPwRepOpened] = useState(false);
   const [idErrorMessage, setIdErrorMessage] = useState("");
@@ -36,36 +39,38 @@ function SignUpForm() {
   };
 
   const handleIdInputChange = (e) => {
-    setIdValue(e.target.value);
+    setFormData({ ...formData, id: e.target.value });
   };
 
   const handlePwInputChange = (e) => {
-    setPwValue(e.target.value);
+    setFormData({ ...formData, password: e.target.value });
   };
 
   const handlePwRepInputChange = (e) => {
-    setPwRepValue(e.target.value);
+    setFormData({ ...formData, confirmPassword: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await fetch(
-        "https://bootcamp-api.codeit.kr/api/sign-up",
+      const response = await axios.post(
+        "/sign-up",
         {
-          method: "POST",
+          email: formData.id,
+          password: formData.password,
+        },
+        {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            email: idValue,
-            password: pwValue,
-          }),
         }
       );
-      const data = await response.json();
-      if (response.ok) {
+
+      if (response.status === 200) {
+        const data = response.data;
         localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
         router.push("/folder");
       } else {
         return idErrorMessage, pwErrorMessage, pwRepErrorMessage;
@@ -73,23 +78,19 @@ function SignUpForm() {
     } catch (error) {
       console.error(error);
     }
-    try {
-      checkEmail(idValue);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   const checkEmail = async (email) => {
     try {
-      const response = await fetch(
-        "https://bootcamp-api.codeit.kr/api/check-email",
+      const response = await axios.post(
+        "/check-email",
         {
-          method: "POST",
+          email,
+        },
+        {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email }),
         }
       );
       if (response.status === 409) {
@@ -102,23 +103,32 @@ function SignUpForm() {
 
   useEffect(() => {
     if (IdInputRef.current) {
-      IdInputRef.current.addEventListener("focusout", () => {
+      IdInputRef.current.addEventListener("focusout", async () => {
         const EMAIL_REG_EXP = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z.]+$/;
-        if (!idValue.trim()) {
+        if (!formData.id.trim()) {
           return setIdErrorMessage("이메일을 입력해 주세요.");
         }
-        if (!EMAIL_REG_EXP.test(idValue.trim())) {
+        if (!EMAIL_REG_EXP.test(formData.id.trim())) {
           return setIdErrorMessage("올바른 이메일 주소가 아닙니다.");
+        }
+
+        try {
+          await checkEmail(formData.id);
+          setIdErrorMessage("이미 사용 중인 이메일입니다.");
+          // 이 코드를 안 적으면 이미 checkEmail()에서 setIdErrorMessage로 작성을 했는데도 이미 사용 중인 이메일입니다. 라는 메세지가 안 떠요 ㅠㅠ
+        } catch (error) {
+          console.error(error);
+          setIdErrorMessage("서버 오류가 발생했습니다.");
         }
       });
     }
-  }, [idValue]);
+  }, [formData.id]);
 
   useEffect(() => {
     if (PasswordInputRef.current) {
       PasswordInputRef.current.addEventListener("focusout", () => {
         const pwRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
-        if (pwValue && !pwRegExp.test(pwValue)) {
+        if (formData.password && !pwRegExp.test(formData.password)) {
           return setPwErrorMessage(
             "비밀번호는 영문, 숫자 조합 8자 이상 입력해 주세요."
           );
@@ -126,12 +136,12 @@ function SignUpForm() {
         return setPwErrorMessage("");
       });
     }
-  }, [pwValue]);
+  }, [formData.password]);
 
   useEffect(() => {
     if (PwRepInputRef.current) {
       PwRepInputRef.current.addEventListener("focusout", () => {
-        if (!(pwRepValue.trim() === pwValue.trim())) {
+        if (!(formData.confirmPassword.trim() === formData.password.trim())) {
           return setPwRepErrorMessage("비밀번호가 일치하지 않아요.");
         }
         return setPwRepErrorMessage("");
@@ -147,7 +157,7 @@ function SignUpForm() {
           className={idErrorMessage ? styles.errorFocus : styles.notError}
           placeholder="이메일을 입력해 주세요."
           onChange={handleIdInputChange}
-          value={idValue}
+          value={formData.id}
           id="email"
           ref={IdInputRef}
         />
@@ -164,7 +174,7 @@ function SignUpForm() {
             placeholder="영문, 숫자를 조합해 8자 이상 입력해 주세요."
             type="password"
             onChange={handlePwInputChange}
-            value={pwValue}
+            value={formData.password}
             id="password"
           />
           <Image
@@ -189,7 +199,7 @@ function SignUpForm() {
             placeholder="비밀번호와 일치하는 값을 입력해 주세요."
             type="password"
             onChange={handlePwRepInputChange}
-            value={pwRepValue}
+            value={formData.confirmPassword}
             id="password"
           />
           <Image
