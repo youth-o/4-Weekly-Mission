@@ -7,9 +7,7 @@ import { getFolder, getProfile } from "../api/SharedPageApi";
 
 function SharedPage() {
   const [profile, setProfile] = useState(null);
-  const [folder, setFolder] = useState({
-    userProfileImage: null,
-  });
+  const [folder, setFolder] = useState(null);
   const [cardLinks, setCardLinks] = useState([]);
 
   const getData = async () => {

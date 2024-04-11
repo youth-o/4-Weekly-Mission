@@ -1,13 +1,16 @@
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "codeit-front.s3.ap-northeast-2.amazonaws.com",
-      },
+    domains: [
+      "codeit-front.s3.ap-northeast-2.amazonaws.com",
+      "codeit-images.codeit.com",
+      "codeit-frontend.codeit.com",
+      "reactjs.org",
+      "assets.vercel.com",
+      "tanstack.com",
+      "storybook.js.org",
+      "testing-library.com",
+      "static.cdninstagram.com",
+      "s.pstatic.net",
     ],
   },
 };
-
-module.exports = nextConfig;
