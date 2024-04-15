@@ -1,9 +1,9 @@
-import { SharedHeader } from "../components/Shared/SharedHeader";
-import { Nav } from "../components/common/Nav";
-import { Footer } from "../components/common/Footer";
-import { SharedMain } from "../components/Shared/SharedMain";
+import { SharedHeader } from "../../components/Shared/SharedHeader";
+import { Nav } from "../../components/common/Nav";
+import { Footer } from "../../components/common/Footer";
+import { SharedMain } from "../../components/Shared/SharedMain";
 import { useState, useEffect } from "react";
-import { getFolder, getProfile } from "../api/SharedPageApi";
+import { getFolder, getProfile } from "../../../api/SharedPageApi";
 
 function SharedPage() {
   const [profile, setProfile] = useState(null);

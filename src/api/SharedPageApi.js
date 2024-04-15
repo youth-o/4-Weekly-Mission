@@ -1,30 +1,35 @@
+import axios from "@/lib/axios";
+
 const API_ADDRESS = "https://bootcamp-api.codeit.kr/api";
 
-export const getProfile = async () => {
-  const response = await fetch(`${API_ADDRESS}/sample/user`);
-  const result = await response.json();
-  const userData = { email: result.email, image: result.profileImageSource };
+export async function getProfile(targetId) {
+  const response = await axios.get(`${API_ADDRESS}/users/${targetId}`);
+  const nextUser = await response.data;
+  const userData = {
+    email: nextUser.email,
+    image: nextUser.profileImageSource,
+  };
 
-  if (!response.ok) {
+  if (!response.status === 400) {
     throw new Error("불러오는 데 실패했습니다.");
   }
 
   return userData;
-};
+}
 
-export const getFolder = async () => {
-  const response = await fetch(`${API_ADDRESS}/sample/folder`);
-  const result = await response.json();
+export async function getFolder(targetId) {
+  const response = await axios.get(`${API_ADDRESS}/folders/${targetId}`);
+  const nextFolder = response.data;
   const folderData = {
-    userProfileImage: result.folder.owner.profileImageSource,
-    userName: result.folder.owner.name,
-    folderName: result.folder.name,
-    cardLinks: result.folder.links,
+    userProfileImage: nextFolder.folder.owner.profileImageSource,
+    userName: nextFolder.folder.owner.name,
+    folderName: nextFolder.folder.name,
+    cardLinks: nextFolder.folder.links,
   };
 
-  if (!response.ok) {
+  if (!response.status === 400) {
     throw new Error("불러오는 데 실패했습니다.");
   }
 
   return folderData;
-};
+}
